@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'PETSCUTE',
+    'MASCOTAS',
+    'PUBLICACIONES',
+    'USUARIOS',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +79,12 @@ WSGI_APPLICATION = 'PETSCUTE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'petscue-sql',
+        'USER': 'postgres',
+        'PASSWORD':'password#1',
+        'HOST':'project-database.postgres.database.azure.com',
+        'PORT':'5432',
     }
 }
 

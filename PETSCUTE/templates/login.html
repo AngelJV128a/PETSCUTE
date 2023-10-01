@@ -35,7 +35,7 @@
                 <i class='bx bxl-linkedin' ></i>
             </div>
             <p>o usa tu email para registrarte</p>
-            <form class="form" method="POST" action="{% url 'Procesar datos' %}"> <!-- va el nombre de la url no la url-->
+            <form class="form" method="POST" action="{% url 'registrar usuario' %}"> <!-- va el nombre de la url no la url-->
                  {% csrf_token %}
                 <label >
                     <i class='bx bx-user' ></i>
@@ -47,10 +47,14 @@
                 </label>
                 <label >
                     <i class='bx bx-lock-alt' ></i>
-                    <input type="password" name="" placeholder="Contraseña">
+                    <input type="password" name="password" placeholder="Contraseña">
                 </label>
                 <input type="submit" value="Registrarse">
             </form>
+                {% if Invalido == False %}
+                    <br>
+                    <p>Usuario no encontrado, crea uno</p>
+                {% endif %}
         </div>
     </div>
    </div>
@@ -72,16 +76,17 @@
                 <i class='bx bxl-linkedin' ></i>
             </div>
             <p>Iniciar sesión con una cuenta</p>
-            <form class="form">
+            <form class="form" method="POST" action="{% url 'Procesar datos' %}">
                 {% csrf_token %}
                 <label >
                     <i class='bx bx-envelope' ></i>
-                    <input type="email" name="" placeholder="Correo electronico">
+                    <input type="email" name="correo" placeholder="Correo electronico">
                 </label>
                 <label >
                     <i class='bx bx-lock-alt' ></i>
-                    <input type="password" name="" placeholder="Contraseña">
+                    <input type="password" name="password" placeholder="Contraseña">
                 </label>
+
                 <input type="submit" value="Iniciar Sesión">
             </form>
         </div>
