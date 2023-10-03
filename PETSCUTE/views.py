@@ -22,14 +22,12 @@ def procesar(request):
 
 def registrar(request):
     if request.method == 'POST':
-        id=2
         nombre=request.POST.get('nombre')
         correo = request.POST.get('correo')
-        password= request.POST.get('password')
+        password= request.POST.get('contrasenia')
         nuevoUsuario=models.Usuario()
-        nuevoUsuario.id=id
         nuevoUsuario.nombre=nombre
         nuevoUsuario.correo=correo
-        nuevoUsuario.password=password
+        nuevoUsuario.contrasenia=password
         nuevoUsuario.save()
-    return render(request, 'procesar.html')
+    return render(request, 'login.html')

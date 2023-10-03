@@ -156,7 +156,7 @@ class Ubicacion(models.Model):
 
 
 class Usuario(models.Model):
-    id= models.IntegerField(primary_key=True)
+    id= models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     nickname = models.CharField(max_length=10)
