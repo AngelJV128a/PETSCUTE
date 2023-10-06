@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetScue</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+</head>
+<body>
+ <!-- SEGUNDO FORMULARIO-->
+   <div class="container-form login">
+    <div class="information">
+        <div class="info-childs">
+            <h2>¡¡Bienvenido nuevamente!!</h2>
+            <p>Si aun no tienes una cuenta por favor registrese aqui</p>
+            <input type="button" class="button_active" value="Registrarse" id="sign-up" onclick="location.href='register';">
+        </div>
+    </div>
+    <div class="form-information">
+        <div class="form-information-childs">
+            <h2>Inicia Sesión</h2>
+            <div class="icons">
+                <i class='bx bxl-google'></i>
+                <i class='bx bxl-github' ></i>
+                <i class='bx bxl-linkedin' ></i>
+            </div>
+            <p>Iniciar sesión con una cuenta</p>
+            <form class="form" method="POST" action="{{ url_for('login') }}">
+                <label >
+                    <i class='bx bx-envelope' ></i>
+                    <input type="email" name="correo" placeholder="Correo electronico">
+                </label>
+                <label >
+                    <i class='bx bx-lock-alt' ></i>
+                    <input type="password" name="contrasenia" placeholder="Contraseña">
+                </label>
+
+                <input type="submit" value="Iniciar Sesión">
+            </form>
+            <div class="msg">{{ msg }}</div>
+        </div>
+    </div>
+   </div>
+</body>
+  
+</html>
