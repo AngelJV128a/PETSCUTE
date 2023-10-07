@@ -33,37 +33,37 @@
     </nav>
    <div class="contaiener">
    <div class="title">Informacion del perfil</div>
-    <form action="#">
+    <form method="POST" action="#">
         <div class="user-details">
             <div class="input-box">
                 <span clas="details">Nombre</span>
-                <input type="text" placeholder={{ session.nombre }} required>
+                <input type="text" name="nombre" placeholder={{ session.nombre }} required>
             </div>
             <div class="input-box">
                 <span clas="details">Apellidos</span>
-                <input type="text" placeholder={{ session.apellido }} required>
+                <input type="text" name="apellido" placeholder={{ session.apellido }} required>
             </div>
             <div class="input-box">
                 <span clas="details">Usario</span>
-                <input type="text" placeholder= {{ session.nombreusuario }} required>
+                <input type="text" name="nombreusuario" placeholder= {{ session.nombreusuario }} required>
             </div>
             <div class="input-box">
                 <span clas="details">Correo</span>
-                <input type="email" placeholder= {{ session.correo }} required>
+                <input type="email" name="correo" placeholder= {{ session.correo }} required>
             </div>
             <div class="input-box">
                 <span clas="details">Ingresa tu constraseña</span>
-                <input type="password" placeholder="Contraseña" required>
+                <input type="password" name="contrasenia1" placeholder="Contraseña" required>
             </div>
             <div class="input-box">
                 <span clas="details">Confirma tu contraseña</span>
-                <input type="password" placeholder="Confirmar contraseña" required>
+                <input type="password" name="contrasenia2" placeholder="Confirmar contraseña" required>
             </div>
-            <div class="input-box">
+            <!--<div class="input-box">
                 <span clas="details">Telefono</span>
-                <input type="tel" placeholder="" required>
-            </div>
-            <div class="input-box">
+                <input type="tel" name="telefono" placeholder="" required>
+            </div>-->
+            <!--<div class="input-box">
                 <span clas="details">Estado</span>
                 <select name="estados" class="dark-mode-select">
                 <option value="0">Selecciona</option>
@@ -99,12 +99,13 @@
                 <option value="Yucatán">Yucatán</option>
                 <option value="Zacatecas">Zacatecas</option>
                 </select>
-            </div>
+            </div>-->
         </div>
         <div class="boton1">
             <input type="submit" name="" value="Confirmar">
         </div>
     </form>
+    <div class="msg">{{ msg }}</div>
    </div>
     
  
