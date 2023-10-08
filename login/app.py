@@ -19,6 +19,12 @@ app.config['MYSQL_DB'] = 'petscue_sql'
 mysql = MySQL(app)
 
 @app.route('/')
+def inicio():
+	if 'loggedin' not in session:
+		return redirect(url_for('login'))
+	else:
+		return render_template('menu2.html')
+
 @app.route('/login', methods =['GET', 'POST'])
 def login():
 	msg = ''
@@ -43,53 +49,61 @@ def login():
 
 @app.route('/menu', methods =['GET', 'POST'])
 def menu():
-	return render_template('menu2.html')
+	if 'loggedin' not in session:
+		msg = 'Necesitas iniciar sesion primero'
+		return redirect(url_for('login', msg = msg))
+	else:
+		return render_template('menu2.html')
 
 @app.route('/profile', methods =['GET', 'POST'])
 def profile():
 	msg = ''
-	if request.method == 'POST' and 'nombre' in request.form and 'apellido' in request.form and 'correo' in request.form and 'nombreusuario' in request.form and 'contrasenia1' in request.form and 'contrasenia2' in request.form:
-		nombre = request.form['nombre']
-		apellido = request.form['apellido']
-		correo = request.form['correo']
-		nombreusuario = request.form['nombreusuario']
-		contrasenia1 = request.form['contrasenia1']
-		contrasenia2 = request.form['contrasenia2']
-		idActual = session['idUsuario']
-		
-		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-		cursor.execute('SELECT * FROM usuarios WHERE nickname = % s and id <> % s', (nombreusuario, idActual, ))
-		account1 = cursor.fetchone()
-		cursor.execute('SELECT * FROM usuarios WHERE nombre = % s and apellido = % s and id <> % s', (nombre, apellido, idActual, ))
-		account2 = cursor.fetchone()
-		cursor.execute('SELECT * FROM usuarios WHERE correo = % s and id <> % s', (correo, idActual, ))
-		account3 = cursor.fetchone()
-		if account1:
-			msg = 'Este nombre de usuario ya existe !'
-		elif account2:
-			msg = 'Nombre y Apellidos ya existentes !'
-		elif account3:
-			msg = 'Correo ya existente !'
-		elif not re.match(r'[^@]+@[^@]+\.[^@]+', correo):
-			msg = 'Correo invalido !'
-		elif not re.match(r'[A-Za-z0-9]+', nombreusuario):
-			msg = 'El nombre de usuario solo debe contener letras y numeros !'
-		elif not re.match(r'[A-Za-z0-9]+', nombre):
-			msg = 'El nombre solo debe contener letras !'
-		elif not nombre or not apellido or not nombreusuario or not correo or not contrasenia1 or not contrasenia2:
-			msg = 'Por favor llene el formulario !'
-		elif contrasenia1 != contrasenia2:
-			msg = 'Contraseñas no coinciden !'
-		else:
-			cursor.execute('UPDATE usuarios SET nombre = % s, apellido = % s, correo = % s, nickname = % s, contrasenia = % s WHERE id = % s', (nombre, apellido, correo, nombreusuario, contrasenia1, idActual, ))
-			mysql.connection.commit()
-			session['nombre'] = nombre
-			session['apellido'] = apellido
-			session['correo'] = correo
-			session['nombreusuario'] = nombreusuario
-	elif request.method == 'POST':
-		msg = 'No ha puesto nada para cambiar !'
-	return render_template('perfil.html', msg = msg)
+	if 'loggedin' not in session:
+		msg = 'Necesitas iniciar sesion primero'
+		return redirect(url_for('login', msg = msg))
+	else:
+		if request.method == 'POST' and 'nombre' in request.form and 'apellido' in request.form and 'correo' in request.form and 'nombreusuario' in request.form and 'contrasenia1' in request.form and 'contrasenia2' in request.form:
+			nombre = request.form['nombre']
+			apellido = request.form['apellido']
+			correo = request.form['correo']
+			nombreusuario = request.form['nombreusuario']
+			contrasenia1 = request.form['contrasenia1']
+			contrasenia2 = request.form['contrasenia2']
+			idActual = session['idUsuario']
+			
+			cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+			cursor.execute('SELECT * FROM usuarios WHERE nickname = % s and id <> % s', (nombreusuario, idActual, ))
+			account1 = cursor.fetchone()
+			cursor.execute('SELECT * FROM usuarios WHERE nombre = % s and apellido = % s and id <> % s', (nombre, apellido, idActual, ))
+			account2 = cursor.fetchone()
+			cursor.execute('SELECT * FROM usuarios WHERE correo = % s and id <> % s', (correo, idActual, ))
+			account3 = cursor.fetchone()
+			if account1:
+				msg = 'Este nombre de usuario ya existe !'
+			elif account2:
+				msg = 'Nombre y Apellidos ya existentes !'
+			elif account3:
+				msg = 'Correo ya existente !'
+			elif not re.match(r'[^@]+@[^@]+\.[^@]+', correo):
+				msg = 'Correo invalido !'
+			elif not re.match(r'[A-Za-z0-9]+', nombreusuario):
+				msg = 'El nombre de usuario solo debe contener letras y numeros !'
+			elif not re.match(r'[A-Za-z0-9]+', nombre):
+				msg = 'El nombre solo debe contener letras !'
+			elif not nombre or not apellido or not nombreusuario or not correo or not contrasenia1 or not contrasenia2:
+				msg = 'Por favor llene el formulario !'
+			elif contrasenia1 != contrasenia2:
+				msg = 'Contraseñas no coinciden !'
+			else:
+				cursor.execute('UPDATE usuarios SET nombre = % s, apellido = % s, correo = % s, nickname = % s, contrasenia = % s WHERE id = % s', (nombre, apellido, correo, nombreusuario, contrasenia1, idActual, ))
+				mysql.connection.commit()
+				session['nombre'] = nombre
+				session['apellido'] = apellido
+				session['correo'] = correo
+				session['nombreusuario'] = nombreusuario
+		elif request.method == 'POST':
+			msg = 'No ha puesto nada para cambiar !'
+		return render_template('perfil.html', msg = msg)
 
 @app.route('/logout')
 def logout():

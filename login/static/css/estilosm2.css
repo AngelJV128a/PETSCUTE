@@ -5,6 +5,10 @@
     font-family: 'Roboto', sans-serif;
 }
 /*https://paletadecolores.com.mx/ */
+html {
+    scroll-behavior: smooth;
+}
+
 nav {
     position: fixed;
     width: 100%;
