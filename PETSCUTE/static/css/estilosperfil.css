@@ -19,7 +19,7 @@ nav {
 }
 
 body {
-    padding-top: 70px; /* Ajuste la altura según la barra de navegación */
+    padding-top: 750px; /* Ajuste la altura según la barra de navegación */
     display: flex;
     flex-direction: column;
     justify-content: center;
