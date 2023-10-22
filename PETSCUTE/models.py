@@ -9,7 +9,7 @@ from django.db import models
 
 
 class Animal(models.Model):
-    nombre = models.CharField(max_length=30)
+    nombre = models.CharField(max_length=45, db_column="nombre")
 
     class Meta:
         managed = False
@@ -132,23 +132,23 @@ class DjangoSession(models.Model):
 
 class Publicacion(models.Model):
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
-    id_animal = models.ForeignKey(Animal, models.DO_NOTHING, db_column='id_animal')
-    nombre_mascota = models.CharField(max_length=10)
-    edad_mascota = models.IntegerField()
-    tamanio_mascota = models.CharField(max_length=10)
-    sexo_mascota = models.CharField(max_length=10)
-    direccion = models.CharField(max_length=30)
-    fecha_publicacion = models.DateTimeField()
+    id_ubicacion = models.ForeignKey('Ubicacion', models.DO_NOTHING, db_column = 'id_ubicacion')
+    id_animal = models.ForeignKey('Animal', models.DO_NOTHING, db_column='id_animal')
+    nombre_mascota = models.CharField(max_length=45, db_column="nombre_mascota")
+    edad_mascota = models.IntegerField(db_column="edad_mascota")
+    tamanio_mascota = models.CharField(max_length=7, db_column="tamanio_mascota")
+    sexo_mascota = models.CharField(max_length=1, db_column="sexo")
+    direccion = models.CharField(max_length=45, db_column="direccion")
+    fecha_publicacion = models.DateTimeField(db_column="fecha_publicacion")
 
     class Meta:
         managed = False
-        db_table = 'publicacion'
+        db_table = 'publicaciones'
 
 
 class Ubicacion(models.Model):
-    pais = models.CharField(max_length=20)
-    estado = models.CharField(max_length=20)
-    municipio = models.CharField(max_length=20)
+    estado = models.CharField(max_length=45, db_column="estado")
+    municipio = models.CharField(max_length=45, db_column="municipio")
 
     class Meta:
         managed = False
@@ -156,14 +156,14 @@ class Ubicacion(models.Model):
 
 
 class Usuario(models.Model):
-    id= models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    nickname = models.CharField(max_length=10)
-    fecha_creacion = models.DateTimeField(null=True,blank=True)
-    correo = models.CharField(max_length=30)
-    contrasenia = models.CharField(max_length=30)
+    id= models.AutoField(primary_key=True, db_column="id")
+    nombre = models.CharField(max_length=45, db_column="nombre")
+    apellido = models.CharField(max_length=45, db_column="apellido")
+    nickname = models.CharField(max_length=45, db_column="nickname")
+    #fecha_creacion = models.DateTimeField(null=False, db_column="fecha_creacion")
+    correo = models.CharField(max_length=45, db_column="correo")
+    contrasenia = models.CharField(max_length=45, db_column="contrasenia")
 
     class Meta:
         managed = False
-        db_table = 'usuario'
+        db_table = 'usuarios'

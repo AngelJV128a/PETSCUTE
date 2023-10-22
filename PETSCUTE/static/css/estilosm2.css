@@ -84,7 +84,11 @@ header {
     display: flex;
     height: 100vh;
     background-color: #fcfdff;
+   
 }
+
+
+
 .header__info {
     display: flex;
     width: 70%;
@@ -518,7 +522,6 @@ body.active nav ul li a{
 body.active .header__info{
     background-color: #2c2c2c;  
 }
-
 body.active h1{
     color:#fdc21c;
 }
@@ -595,27 +598,4 @@ body.dark{
     background: #222;
     color: #fff;
 }
-
-  /* Estilo para el footer */
- /* footer {
-    
-  }*/
-
-  footer {
-    display: flex;
-    justify-content: space-between;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    margin: 0 auto;
-    font-size: 15px;
-}
-
-.columna {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-}
-
 

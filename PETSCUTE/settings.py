@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'PETSCUTE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'petscue-sql',
-        'USER': 'postgres',
-        'PASSWORD':'password#1',
-        'HOST':'project-database.postgres.database.azure.com',
-        'PORT':'5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'petscue_sql',
+        'USER': 'firulais',
+        'PASSWORD':'1D8DE81DJ7nMtgny',
+        'HOST':'146.190.218.21',
+        'PORT':'3306',
     }
 }
 
@@ -130,4 +130,3 @@ STATICFILES_DIRS=(os.path.join('PETSCUTE/static'),)
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-

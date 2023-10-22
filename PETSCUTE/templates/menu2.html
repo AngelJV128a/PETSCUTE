@@ -1,11 +1,10 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/estilosm2.css' %}"><!--/PETSCUTE/static/css/estilosm2.css-->
-    <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
+    <link rel="stylesheet" href="/PETSCUTE/static/css/estilosm2.css">
+    <link rel="icon" href="/PETSCUTE/static/img/lg.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -13,14 +12,28 @@
     <title>PetScue</title>
 </head>
 <body>
-    {% include 'reutilizables/nav_bar.html' %} <!-- se manda a llamar un componente reutilizable-->
+    <nav>
+        <span class="logo"><i class='bx bx-home-heart'></i></span>
+        <button class="btn-menu"><i class='bx bx-menu'></i></button>
+        <ul class="menu-options">
+            <li><a href="menu2.html">Inicio</a></li>
+            <li><a href="foro.html">Foro</a></li>
+            <li><a href="publicar.html">Publicar</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="login.html">Logout</a></li>
+            <li class="switch">
+                <i class='bx bxs-sun' ></i>
+                <i class='bx bxs-moon' ></i>
+            </li>
+        </ul>
+    </nav>
     <header>
         <div class="header__info">
             <div class="info">
                 <div class="info__childs">
                     <p class="hello">¡Hola!</p>
                     <h1>Bienvenido a PetScue</h1>
-                    <button onclick="irAAncla('seccion1')">Conocenos</button>
+                    <button>Conocenos</button>
                 </div>
             </div>
         </div>
@@ -28,11 +41,10 @@
         <div class="y-container2"></div>
         <img class="imagen" src="/PETSCUTE/static/img/lg.png" alt="logo">
     </header>
-    <a name="seccion1"></a>
     <main>
         <!--    SECCION DE QUIENES SOMOS -->
         <section>
-            <div class="about-img" >
+            <div class="about-img">
                 <img src="/PETSCUTE/static/img/equipo.png" alt="">
             </div>
             <article>
@@ -63,38 +75,7 @@
             </div>
         </section>
     </main>
-  
-      <footer>
-        <div class="columna">
-            <span>
-                <i class='bx bxl-facebook-circle'></i>
-                SomosPetScue <br>
-                <i class='bx bxl-instagram-alt' ></i>
-                petscue-aak <br>
-                <i class='bx bxl-twitter' ></i>
-                petscue-aak <br>
-            </span>
-        </div>
-        <div class="columna">
-            <i class='bx bx-envelope'></i>
-            petscue@gmail.com <br>
-            <i class='bx bx-phone'></i>
-            3338434225 <br>
-            <i class='bx bx-home-alt-2'></i>
-                Guadalajara, Mexico
-        </div>
-       <div class="columna">
-            <p>Informacion Legal</p>
-            <p>Politica de Privacidad</p>
-        </div>
-        
-    </footer>
-
-    
-      
-      
     <script src="/PETSCUTE/static/js/dark.js"></script>
     <script src="/PETSCUTE/static/js/menu.js"></script>
->>>>>>> 2430276 (	modified:   PETSCUTE/static/css/estilosm2.css)
 </body>
 </html>

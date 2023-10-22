@@ -20,13 +20,9 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.login, name='ruta global'),
-    path('home/',views.irAInicio,name="ir inicio"),
     path('procesar/', views.procesar, name="Procesar datos"),
     path('registrar/',views.registrar,name="registrar usuario"),
-    path('foro/',views.irAForo,name="ir foro"),
-    path('perfil/',views.irAPerfil,name="ir perfil"),
-    path('publicar/',views.irAPublicar,name="ir publicar"),
-    path('logout/',views.cerrarSesion,name="cerrar sesion"),
+
 
     path('MASCOTAS/',include('MASCOTAS.urls')),
     path('PUBLICACIONES/',include('PUBLICACIONES.urls')),
