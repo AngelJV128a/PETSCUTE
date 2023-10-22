@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'PETSCUTE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'petscue-sql',
-        'USER': 'postgres',
-        'PASSWORD':'password#1',
-        'HOST':'project-database.postgres.database.azure.com',
-        'PORT':'5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'petscue_sql',
+        'USER': 'firulais',
+        'PASSWORD':'1D8DE81DJ7nMtgny',
+        'HOST':'146.190.218.21',
+        'PORT':'3306',
     }
 }
 
@@ -131,3 +131,9 @@ STATICFILES_DIRS=(os.path.join('PETSCUTE/static'),)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'petscuecucei@gmail.com'
+EMAIL_HOST_PASSWORD = 'qivt iutn ymjb bqoi'

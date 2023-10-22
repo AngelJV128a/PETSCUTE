@@ -27,6 +27,9 @@ urlpatterns = [
     path('perfil/',views.irAPerfil,name="ir perfil"),
     path('publicar/',views.irAPublicar,name="ir publicar"),
     path('logout/',views.cerrarSesion,name="cerrar sesion"),
+    path('olvide_password/',views.irOlvidePassword,name="olvide mi password"),
+    path('enviarToken/',views.enviarToken,name="enviar token"),
+    path('detallesPost/',views.irDetallesPublicacion,name="detalles publicacion"),
 
     path('MASCOTAS/',include('MASCOTAS.urls')),
     path('PUBLICACIONES/',include('PUBLICACIONES.urls')),
