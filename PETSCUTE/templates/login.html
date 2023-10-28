@@ -39,15 +39,15 @@
                  {% csrf_token %}
                 <label >
                     <i class='bx bx-user' ></i>
-                    <input type="text" name="nombre" placeholder="Nombre">
+                    <input type="text" name="nombre" placeholder="Nombre" required>
                 </label>
                 <label >
                     <i class='bx bx-envelope' ></i>
-                    <input type="email" name="correo" placeholder="Correo electronico">
+                    <input type="email" name="correo" placeholder="Correo electronico" required>
                 </label>
                 <label >
                     <i class='bx bx-lock-alt' ></i>
-                    <input type="password" name="contrasenia" placeholder="Contraseña">
+                    <input type="password" name="contrasenia" placeholder="Contraseña" required>
                 </label>
                 <input type="submit" value="Registrarse">
             </form>
@@ -77,11 +77,11 @@
                 {% csrf_token %}
                 <label >
                     <i class='bx bx-envelope' ></i>
-                    <input type="email" name="correo" placeholder="Correo electronico">
+                    <input type="email" name="correo" placeholder="Correo electronico" required>
                 </label>
                 <label >
                     <i class='bx bx-lock-alt' ></i>
-                    <input type="password" name="password" placeholder="Contraseña">
+                    <input type="password" name="password" placeholder="Contraseña" required>
                 </label>
 
                 <!-- Botón de "Olvidé mi contraseña" -->
