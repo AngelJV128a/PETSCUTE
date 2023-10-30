@@ -137,3 +137,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'petscuecucei@gmail.com'
 EMAIL_HOST_PASSWORD = 'qivt iutn ymjb bqoi'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

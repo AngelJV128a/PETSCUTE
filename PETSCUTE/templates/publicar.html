@@ -7,64 +7,69 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/estilosm2.css' %}"><!--/PETSCUTE/static/css/estilosm2.css-->
+    <link rel="stylesheet" href="{% static 'css/estilos_publicar.css' %}">
     <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Document</title>
+    <title>PUBLICAR</title>
 
 </head>
 <body>
+    {% include 'reutilizables/nav_bar.html' %}
+<div class="container">
+    <label class="aviso1">"¡Dale a un amigo peludo una nueva oportunidad de vida! Esta es la sección de Publicar para Adopción, donde puedes compartir la historia y detalles de tu mascota en busca de un nuevo hogar amoroso." </label>
+    <div class="formulario">
+        <form action="{% url 'salvar publicacion'%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-left">
+                <label for="nombre_mascota">Nombre de la mascota:</label>
+                <input type="text" id="nombre_mascota" name="nombre_mascota" required>
 
-<div>
-<form action="/ruta_donde_procesas_el_formulario/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+                <label for="tamanio">Tamaño:</label>
+                <select id="tamanio" name="tamanio">
+                    <option value="pequenio">Pequeño</option>
+                    <option value="mediano">Mediano</option>
+                    <option value="grande">Grande</option>
+                </select>
 
-    <label for="nombre_mascota">Nombre de la mascota:</label>
-    <input type="text" id="nombre_mascota" name="nombre_mascota" required>
-    <br><br>
+                <label for="edad">Edad de la mascota (en años):</label>
+                <input type="number" id="edad" name="edad" required>
 
-    <label for="tamanio">Tamaño:</label>
-    <select id="tamanio" name="tamanio">
-        <option value="pequenio">Pequeño</option>
-        <option value="mediano">Mediano</option>
-        <option value="grande">Grande</option>
-    </select>
-    <br><br>
+                <label for="sexo">Sexo de la mascota:</label>
+                <select id="sexo" name="sexo">
+                    <option value="macho">Macho</option>
+                    <option value="hembra">Hembra</option>
+                </select>
+                <label for="pais">País:</label>
+                <input type="text" id="pais" name="pais" required>
 
-    <label for="edad">Edad de la mascota (en años):</label>
-    <input type="number" id="edad" name="edad" required>
-    <br><br>
+                <label for="estado">Estado :</label>
+                <input type="text" id="estado" name="estado" required>
 
-    <label for="sexo">Sexo de la mascota:</label>
-    <select id="sexo" name="sexo">
-        <option value="macho">Macho</option>
-        <option value="hembra">Hembra</option>
-    </select>
-    <br><br>
+                <label for="municipio">Municipio:</label>
+                <input type="text" id="municipio" name="municipio" required>
 
-    <label for="pais">País:</label>
-    <input type="text" id="pais" name="pais" required>
-    <br><br>
-
-    <label for="estado">Estado:</label>
-    <input type="text" id="estado" name="estado" required>
-    <br><br>
-
-    <label for="municipio">Municipio:</label>
-    <input type="text" id="municipio" name="municipio" required>
-    <br><br>
-
-    <!-- Campo para subir la foto de la mascota -->
-    <label for="foto_mascota">Foto de la mascota:</label>
-    <input type="file" id="foto_mascota" name="foto_mascota" accept="image/*" required>
-    <br><br>
-
-    <input type="submit" value="Enviar">
-</form>
-
+                <label for="comentario">Comentario:</label>
+                <br><textarea name="comentario" id="comentario" rows="4" cols="50">Coloca una breve descripcion aqui!</textarea>
+            </div>
+            <div class="form-right">
+                <!--UTILICE LO MIMSO QUE PARA LA FOTO DE PERFIL, MÁS NO SE SI SEA NECESARIO CAMBIAR VARIABLES Y EL CODIGO JS-->
+                <div class="profile-pic-div">
+                    <img src="{% static 'img/image.jpg' %}" id="photo"> <br/>
+                    <input type="file" id="file" name="foto"> <br/>
+                    <label for="file" id="uploadBtn">Choose Photo</label>
+               </div>
+            </div>
+            <input type="submit" value="Enviar">
+        </form>
     </div>
-{% include 'reutilizables/footer.html' %}
+    <label class="aviso"> ¡POR FAVOR INGRESA TODOS LOS DATOS, ES ESCENCIAL PARA LA PUBLICACION! <br> La publicacion sera verifcada por un adminsitrador y se publicara en unos minutos </label>
+    </div>
+
+
+    {% include 'reutilizables/footer.html' %}
+     <script src="{% static 'js/code.js' %}"></script>
 </body>
 </html>

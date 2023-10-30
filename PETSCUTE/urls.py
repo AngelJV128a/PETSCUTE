@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.login, name='ruta global'),
@@ -31,7 +34,12 @@ urlpatterns = [
     path('enviarToken/',views.enviarToken,name="enviar token"),
     path('detallesPost/',views.irDetallesPublicacion,name="detalles publicacion"),
 
+    path('publicar/salvar/',views.salvar_publicacion,name="salvar publicacion"),
+
     path('MASCOTAS/',include('MASCOTAS.urls')),
     path('PUBLICACIONES/',include('PUBLICACIONES.urls')),
     path('USUARIOS/',include('USUARIOS.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

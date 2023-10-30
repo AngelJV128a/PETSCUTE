@@ -39,16 +39,16 @@ class Animal(models.Model):
 
 class Publicacion(models.Model):
     id= models.AutoField(primary_key=True, db_column="id")
-    idUsuario = models.ForeignKey(Usuario, db_column="id_usuario")
-    idAnimal = models.ForeignKey(Animal, db_column="id_animal")
-    idUbicacion = models.ForeignKey(Ubicacion, db_column="id_ubicacion")
+    idUsuario = models.ForeignKey(Usuario, db_column="id_usuario", on_delete=models.CASCADE)
+    idAnimal = models.ForeignKey(Animal, db_column="id_animal", on_delete=models.CASCADE)
+    idUbicacion = models.ForeignKey(Ubicacion, db_column="id_ubicacion", on_delete=models.CASCADE)
     nombreMascota = models.CharField(max_length=45, db_column="nombre_mascota")
     edadMascota = models.CharField(max_length=10, db_column="edad_mascota")
     sexoMascota = models.CharField(max_length=1, db_column="sexo")
     fechaPublicacion = models.DateField(db_column="fecha_publicacion")
     tamanioMascota = models.CharField(max_length=7, db_column="tamanio_mascota")
     direccion = models.CharField(max_length=45, db_column="direccion")
-    foto = models.CharField(max_length=128, db_column="foto")
+    foto = models.ImageField(upload_to='fotos_mascotas/', db_column="foto")
 
     class Meta:
         managed = False

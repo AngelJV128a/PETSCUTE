@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password,check_password
@@ -6,6 +6,10 @@ from . import models
 from django.core.mail import send_mail
 from django.http import HttpResponseBadRequest
 import random
+from django.core.files.storage import FileSystemStorage
+from django.core.paginator import Paginator
+import logging
+logger = logging.getLogger(__name__)
 
 def login(request):
     return render (request,'login.html')
@@ -43,6 +47,13 @@ def registrar(request):
     return render(request, 'login.html')
 
 def irAForo(request):
+    publicaciones_lista = models.Publicacion.objects.all()
+    paginator = Paginator(publicaciones_lista, 18)  # Muestra 18 publicaciones por página
+
+    page = request.GET.get('page')
+    publicaciones = paginator.get_page(page)
+
+    return render(request, 'foro.html', {'publicaciones': publicaciones})
     return render(request, 'foro.html')
 
 def irAPerfil(request):
@@ -100,3 +111,24 @@ def enviarToken(request):
         return render(request, 'olvideContrasenia.html')
     else:
         return HttpResponseBadRequest('Método no permitido.')
+
+
+def salvar_publicacion(request):
+    logger.info("salvar_publicacion ha sido llamada")
+    if request.method == 'POST' and request.FILES['foto']:
+        foto = request.FILES['foto']
+        fs = FileSystemStorage()
+        filename = fs.save('fotos_mascotas/' + foto.name, foto)
+        uploaded_file_url = fs.url(filename)
+
+        publicacion = models.Publicacion(
+            foto=uploaded_file_url,
+            idUsuario_id=4,
+            idAnimal_id=2,
+            idUbicacion_id=1
+        )
+        publicacion.save()
+
+        return redirect('ir foro')
+
+    return render(request, 'publicar.html')
