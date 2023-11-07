@@ -38,25 +38,26 @@
 
     </style>
 </head>
-<body style="margin-top: 80px;">
+<body>
 
-
+ {% include 'reutilizables/nav_bar.html' %}
 
 <main>
-<!--Barra de busqueda-->
-<div class="container mt-5">
-    <form>
+<!--Panel de busqueda-->
+<form method="post" action="{% url 'busqueda personalizada' %}">
+    {% csrf_token %}
+        <center><br><br><br><div class="container mt-5">
         <div class="form-row align-items-center">
             <div class="col-auto">
                 <label class="sr-only" for="inputCiudad">Ciudad</label>
-                <input type="text" class="form-control mb-2" id="inputCiudad" placeholder="Ingresar ciudad">
+                <input type="text" name="ciudad" class="form-control mb-2" id="inputCiudad" placeholder="Ingresar ciudad">
             </div>
             <div class="col-auto">
                 <label class="sr-only" for="selectTamano">Tamaño</label>
-                <select class="form-control mb-2" id="selectTamano">
-                    <option value="pequenio">Pequeño</option>
-                    <option value="mediano">Mediano</option>
-                    <option value="grande">Grande</option>
+                <select class="form-control mb-2" id="selectTamano" name="tamanio">
+                    <option value="Chico">Pequeño</option>
+                    <option value="Mediano">Mediano</option>
+                    <option value="Grande">Grande</option>
                 </select>
             </div>
             <div class="col-auto">
@@ -69,14 +70,14 @@
         <i class="fas fa-pencil-alt mr-2"></i>Publicar
             </a>
     </div>
-</div>
+</div></center>
 
 <!--Panel de perritos-->
 <div class="container mt-5">
     <div class="row">
         {% for publicacion in publicaciones %}
         <div class="col-md-2 mb-4">
-            <a href="{% url 'detalles publicacion' %}" class="text-decoration-none">
+            <a href="{% url 'detalles publicacion' publicacion.id %}" class="text-decoration-none">
                 <div class="card">
                     <!-- Estilo añadido para la imagen -->
                     <img src="{{ MEDIA_URL }}{{ publicacion.foto }}" class="card-img-top" alt="{{ publicacion.nombreMascota }}" style="height: 150px; object-fit: cover;">

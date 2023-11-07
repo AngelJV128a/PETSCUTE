@@ -14,7 +14,8 @@ class Usuario(models.Model):
     nickname = models.CharField(max_length=45, db_column="nickname")
     #fecha_creacion = models.DateTimeField(null=False, db_column="fecha_creacion")
     correo = models.CharField(max_length=45, db_column="correo")
-    contrasenia = models.CharField(max_length=128, db_column="contrasenia")
+    contrasenia = models.BinaryField(max_length=128, db_column="contrasenia")
+    foto = models.ImageField(upload_to='fotos_perfil/', db_column="foto")
 
     class Meta:
         managed = False
@@ -45,7 +46,7 @@ class Publicacion(models.Model):
     nombreMascota = models.CharField(max_length=45, db_column="nombre_mascota")
     edadMascota = models.CharField(max_length=10, db_column="edad_mascota")
     sexoMascota = models.CharField(max_length=1, db_column="sexo")
-    fechaPublicacion = models.DateField(db_column="fecha_publicacion")
+    fechaPublicacion = models.DateField(auto_now_add=True,db_column="fecha_publicacion")
     tamanioMascota = models.CharField(max_length=7, db_column="tamanio_mascota")
     direccion = models.CharField(max_length=45, db_column="direccion")
     foto = models.ImageField(upload_to='fotos_mascotas/', db_column="foto")

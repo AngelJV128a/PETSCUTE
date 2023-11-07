@@ -27,12 +27,15 @@ urlpatterns = [
     path('procesar/', views.procesar, name="Procesar datos"),
     path('registrar/',views.registrar,name="registrar usuario"),
     path('foro/',views.irAForo,name="ir foro"),
+    path('buscar/',views.busquedaPersonalizada,name="busqueda personalizada"),
     path('perfil/',views.irAPerfil,name="ir perfil"),
     path('publicar/',views.irAPublicar,name="ir publicar"),
+    path('asociaciones/',views.irAAsociaciones,name="ir asociaciones"),
     path('logout/',views.cerrarSesion,name="cerrar sesion"),
     path('olvide_password/',views.irOlvidePassword,name="olvide mi password"),
     path('enviarToken/',views.enviarToken,name="enviar token"),
-    path('detallesPost/',views.irDetallesPublicacion,name="detalles publicacion"),
+    path('detallesPost/<int:id>/',views.irDetallesPublicacion,name="detalles publicacion"),
+    path('actualizarPerfil/',views.actualizarPerfil,name="actualizar perfil"),
 
     path('publicar/salvar/',views.salvar_publicacion,name="salvar publicacion"),
 

@@ -18,49 +18,54 @@
 </head>
 <body>
     {% include 'reutilizables/nav_bar.html' %}
-
-    <!--ESTO ES PARA LO DE LA FOTO DE PERFIL-->
-    <div class="profile-pic-div">
-        <img src="{% static 'img/image.jpg' %}" id="photo"> <br/>
-        <input type="file" id="file"> <br/>
-        <label for="file" id="uploadBtn">Choose Photo</label>
-   </div>
-   <!--DE AQUI EN ADELANTE ES LO DEL FORMULARIO-->
-   <div class="contaiener">
-   <div class="title">Informacion del perfil</div>
-    <form action="#">
+<div class="contaiener">
+    <br><br>
+    <div class="title">Informacion del perfil</div>
+    <form action="{% url 'actualizar perfil' %}" method="post" enctype="multipart/form-data"> <!-- Añade enctype para manejar archivos -->
+        <!-- ESTO ES PARA LO DE LA FOTO DE PERFIL -->
+        {% csrf_token %}
+        <div class="profile-pic-div">
+            {% if usuario.foto %}
+            <img src="{{usuario.foto}}" id="photo"> <br/>
+            {% else %}
+            <img src="{% static 'img/image.jpg' %}" id="photo"> <br/>
+            {% endif %}
+            <input type="file" id="file" name="foto"> <!-- Añade el atributo "name" para el campo de la foto -->
+            <label for="file" id="uploadBtn">Choose Photo</label>
+        </div>
+        <!-- DE AQUI EN ADELANTE ES LO DEL FORMULARIO -->
         <div class="user-details">
             <div class="input-box">
-                <span clas="details">Nombre</span>
-                <input type="text" placeholder="Nombre" required>
+                <span class="details">Nombre</span>
+                <input type="text" id="nombre" placeholder="Nombre" name="nombre" required value="{{usuario.nombre}}">
             </div>
             <div class="input-box">
-                <span clas="details">Apellidos</span>
-                <input type="text" placeholder="Apellidos" required>
+                <span class="details">Apellidos</span>
+                <input type="text" id="apellidos" placeholder="Apellidos" name="apellidos" required value="{{usuario.apellido}}">
             </div>
             <div class="input-box">
-                <span clas="details">Usario</span>
-                <input type="text" placeholder="Nombre de usuario" required>
+                <span class="details">Usuario</span>
+                <input type="text" id="nickname" placeholder="Nombre de usuario" name="nickname" required value="{{usuario.nickname}}">
             </div>
             <div class="input-box">
-                <span clas="details">Correo</span>
-                <input type="email" placeholder="Correo electronico" required>
+                <span class="details">Correo</span>
+                <input type="email" id="correo" placeholder="Correo electronico" name="correo" required value="{{usuario.correo}}">
             </div>
             <div class="input-box">
-                <span clas="details">Ingresa tu constraseña</span>
-                <input type="password" placeholder="Contraseña" required>
+                <span class="details">Ingresa tu constraseña</span>
+                <input type="password" id="password" placeholder="Contraseña" name="password" required>
             </div>
             <div class="input-box">
-                <span clas="details">Confirma tu contraseña</span>
-                <input type="password" placeholder="Confirmar contraseña" required>
+                <span class="details">Confirma tu contraseña</span>
+                <input type="password" placeholder="Confirmar contraseña" name="confirm_password" required>
             </div>
             <div class="input-box">
-                <span clas="details">Telefono</span>
-                <input type="tel" placeholder="" required>
+                <span class="details">Telefono</span>
+                <input type="tel" id="telefono" placeholder="Teléfono" name="telefono" required>
             </div>
             <div class="input-box">
-                <span clas="details">Estado</span>
-                <select name="estados" class="dark-mode-select">
+                <span class="details">Estado</span>
+                <select name="estados" id="estado" class="dark-mode-select" name="estado">
                 <option value="0">Selecciona</option>
                 <option value="Aguascalientes">Aguascalientes</option>
                 <option value="Baja California">Baja California</option>
@@ -100,6 +105,8 @@
             <input type="submit" name="" value="Confirmar">
         </div>
     </form>
+</div>
+
  {% include 'reutilizables/footer.html' %}
    </div>
     

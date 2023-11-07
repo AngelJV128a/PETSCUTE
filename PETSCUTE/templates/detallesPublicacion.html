@@ -34,19 +34,19 @@
     </style>
 </head>
 <body>
-
-<div class="card">
+ {% include 'reutilizables/nav_bar.html' %}
+ <main>
+<br><br><br><div class="card">
     <!-- Imagen de la mascota -->
-    <img src="https://www.nationalgeographic.com.es/medio/2023/05/31/un-perro-de-la-raza-labrador-retriever_00000000_d0938095_230531120054_800x800.jpg" alt="Foto de [nombre de la mascota]">
+    <img src="{{mascota.foto}}">
 
     <!-- Detalles de la mascota -->
-    <div class="card-title">Nombre: [nombre de la mascota]</div>
-    <p>Edad: [edad de la mascota] años</p>
-    <p>Sexo: [sexo de la mascota]</p>
-    <p>Fecha de publicación: [fecha de publicación]</p>
-    <p>Dirección: [dirección de donde se encuentra la mascota]</p>
+    <div class="card-title">Nombre: {{mascota.nombreMascota}}</div>
+    <p>Edad: {{mascota.edadMascota}} años</p>
+    <p>Sexo: {{mascota.sexoMascota}}</p>
+    <p>Fecha de publicación: {{mascota.fechaPublicacion}}</p>
+    <p>Dirección: {{mascota.direccion}}</p>
     <p>Ciudad: [ciudad]</p>
-    <p>Fotografia: []</p>
 
     <!-- Detalles del usuario que lo publicó -->
     <hr> <!-- Una línea de separación -->
@@ -55,7 +55,7 @@
     <!-- Botón de Adoptar más estrecho -->
     <button style="background-color: #4CAF50; color: white; padding: 5px 10px; width: 80px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Adoptar</button>
 </div>
-
+</main>
 
 
 {% include 'reutilizables/footer.html' %}
