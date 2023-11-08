@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/estilosm2.css' %}"><!--/PETSCUTE/static/css/estilosm2.css-->
+    <link rel="stylesheet" href="{% static 'css/estilo_foro.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos_footer.css'%}">
     <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,9 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>Foro</title>
     <style>
-
         /* Estilos personalizados para la paginación */
-
         .custom-pagination .page-item.active .page-link {
             background-color: #007bff;
             border-color: #007bff;
@@ -32,9 +32,23 @@
             color: white;
         }
         .custom-pagination {
-    position: relative;
-    z-index: 1000; /* Un valor alto para asegurarnos de que esté por encima de otros elementos */
-}
+            position: relative;
+            z-index: 1000; /* Un valor alto para asegurarnos de que esté por encima de otros elementos */
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            padding: 15px;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fcfdff;
+            box-shadow: 0px 3px 5px 0px rgba(99, 98, 98, 0.75);
+            z-index: 99;
+            transition: all .4s ease;
+            margin-top: 0; /* Elimina el margen superior de la barra de navegación */
+        }
 
     </style>
 </head>
@@ -60,35 +74,33 @@
                     <option value="Grande">Grande</option>
                 </select>
             </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-            </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                </div>
         </div>
     </form>
     <div class="mt-4">
-            <a href="{% url 'ir publicar' %}" class="btn btn-success">
-        <i class="fas fa-pencil-alt mr-2"></i>Publicar
-            </a>
+            <a href="{% url 'ir publicar' %}" class="btn btn-success"><i class="fas fa-pencil-alt mr-2"></i>Publicar</a>
     </div>
 </div></center>
 
 <!--Panel de perritos-->
-<div class="container mt-5">
-    <div class="row">
+<div class="container__cards">
         {% for publicacion in publicaciones %}
-        <div class="col-md-2 mb-4">
             <a href="{% url 'detalles publicacion' publicacion.id %}" class="text-decoration-none">
                 <div class="card">
-                    <!-- Estilo añadido para la imagen -->
-                    <img src="{{ MEDIA_URL }}{{ publicacion.foto }}" class="card-img-top" alt="{{ publicacion.nombreMascota }}" style="height: 150px; object-fit: cover;">
-                    <div class="card-body" style="min-height: 50px;">
-                        <h5 class="card-title">{{ publicacion.nombreMascota }}</h5>
+                    <div class="cover">
+                        <img src="{{ MEDIA_URL }}{{ publicacion.foto }}" alt="{{ publicacion.nombreMascota }}" style="height: 150px; object-fit: cover; border-radius:5px;">
+                        <div class="img__back"></div>
+                    </div>
+                    <div class="description">
+                        <h5>{{ publicacion.nombreMascota }}</h5>
+                        <p>Aqui van los detalles se supone.</p>
+                        <input type="button" value="Leer más"></a></input>
                     </div>
                 </div>
             </a>
-        </div>
         {% endfor %}
-    </div>
 </div>
 
 

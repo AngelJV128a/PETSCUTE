@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/estilosm2.css' %}"><!--/PETSCUTE/static/css/estilosm2.css-->
+    <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Enlace a Font Awesome para el ícono -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>Foro</title>
+    <style>
+
+        /* Estilos personalizados para la paginación */
+
+        .custom-pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+        .custom-pagination .page-link {
+            color: #007bff;
+            border-color: #007bff;
+        }
+        .custom-pagination .page-link:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: white;
+        }
+        .custom-pagination {
+            position: relative;
+            z-index: 1000; /* Un valor alto para asegurarnos de que esté por encima de otros elementos */
+        }
+
+        /* Estilos para la barra de navegación especiales para esta sección */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            padding: 15px;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fcfdff;
+            box-shadow: 0px 3px 5px 0px rgba(99, 98, 98, 0.75);
+            z-index: 99;
+            transition: all .4s ease;
+            margin-top: 0; /* Elimina el margen superior de la barra de navegación */
+        }
+
+    </style>
+</head>
+<body>
+
+ {% include 'reutilizables/nav_bar.html' %}
+
+<main>
+<!--Panel de busqueda-->
+<form method="post" action="{% url 'busqueda personalizada' %}">
+    {% csrf_token %}
+        <center><br><br><br><div class="container mt-5">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <label class="sr-only" for="inputCiudad">Ciudad</label>
+                <input type="text" name="ciudad" class="form-control mb-2" id="inputCiudad" placeholder="Ingresar ciudad">
+            </div>
+            <div class="col-auto">
+                <label class="sr-only" for="selectTamano">Tamaño</label>
+                <select class="form-control mb-2" id="selectTamano" name="tamanio">
+                    <option value="Chico">Pequeño</option>
+                    <option value="Mediano">Mediano</option>
+                    <option value="Grande">Grande</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+            </div>
+        </div>
+    </form>
+    <div class="mt-4">
+            <a href="{% url 'ir publicar' %}" class="btn btn-success">
+        <i class="fas fa-pencil-alt mr-2"></i>Publicar
+            </a>
+    </div>
+</div></center>
+
+<!--Panel de perritos-->
+<div class="container mt-5">
+    <div class="row">
+        {% for publicacion in publicaciones %}
+        <div class="col-md-2 mb-4">
+            <a href="{% url 'detalles publicacion' publicacion.id %}" class="text-decoration-none">
+                <div class="card">
+                    <!-- Estilo añadido para la imagen -->
+                    <img src="{{ MEDIA_URL }}{{ publicacion.foto }}" class="card-img-top" alt="{{ publicacion.nombreMascota }}" style="height: 150px; object-fit: cover;">
+                    <div class="card-body" style="min-height: 50px;">
+                        <h5 class="card-title">{{ publicacion.nombreMascota }}</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!--Barra de paginacion-->
+<div class="container mt-5">
+    <nav aria-label="Page navigation" class="custom-pagination">
+        <ul class="pagination justify-content-center">
+            {% if publicaciones.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">Primero</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ publicaciones.previous_page_number }}">Anterior</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link">Primero</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link">Anterior</a>
+            </li>
+            {% endif %}
+
+            {% for num in publicaciones.paginator.page_range %}
+            <li class="page-item {% if publicaciones.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+
+            {% if publicaciones.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ publicaciones.next_page_number }}">Siguiente</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ publicaciones.paginator.num_pages }}">Último</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link">Siguiente</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link">Último</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+{% include 'reutilizables/footer.html' %}
+</body>
+</html>

@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-body{
-    height: 180px;
-    width: 100%;
-}
-
 h1{
     font-family: sans-serif;
     text-align: center;

@@ -24,9 +24,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Asegure que el cuerpo ocupe al menos el 100% de la altura de la ventana */
-   /* background: radial-gradient(circle, rgba(174,228,238,1) 0%, rgba(148,187,233,1) 100%);*/
+    min-height: 100vh; 
 }
+
 
 .contaiener{
     max-width: 700px;
@@ -37,6 +37,7 @@ body {
 }
 
 .contaiener .title{
+   margin-bottom: 400px;
     font-size: 25px;
     font-weight: 500;
     position: relative;

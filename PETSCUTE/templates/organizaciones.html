@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
    <link rel="stylesheet" href="{% static 'css/estilosm2.css' %}"><!--/PETSCUTE/static/css/estilosm2.css-->
     <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/estilos_footer.css'%}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -20,26 +21,47 @@
 
   <!-- Estilos CSS personalizados para el contenedor del mapa -->
   <style>
+    /* Estilos CSS personalizados para el contenedor del mapa */
     #map-container {
-    position: relative;
-    width: 800px;
-    height: 600px;
-    margin: 0 auto;
-  }
+      display: flex;
+      justify-content: center; /* Centra horizontalmente */
+      align-items: center; /* Centra verticalmente */
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 15px); /* Ajusta el valor según el tamaño de tu barra de navegación */
+      margin-top: 15px; /* Igual al valor de la altura de la barra de navegación */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+        /* Estilos para la barra de navegación especiales para esta sección */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      padding: 15px;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fcfdff;
+      box-shadow: 0px 3px 5px 0px rgba(99, 98, 98, 0.75);
+      z-index: 99;
+      transition: all .4s ease;
+      margin-top: 0; /* Elimina el margen superior de la barra de navegación */
+    }
 
-  #map {
-    width: 100%;
-    height: 100%;
-  }
-
-
+    
+    #map {
+      width: 90%;
+      height: 90%;
+    }
+    
   </style>
 </head>
 <body>
  {% include 'reutilizables/nav_bar.html' %}
  <main>
-   <br><br>
-  <h1>Mapa de Jalisco con Organizaciones</h1>
+  <h1><center>Mapa de Jalisco con Organizaciones</center></h1>
   <div id="map-container">
     <div id="map"></div>
   </div>
