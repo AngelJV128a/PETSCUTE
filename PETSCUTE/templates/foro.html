@@ -16,25 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>Foro</title>
     <style>
-        /* Estilos personalizados para la paginación */
-        .custom-pagination .page-item.active .page-link {
-            background-color: #007bff;
-            border-color: #007bff;
-            color: white;
-        }
-        .custom-pagination .page-link {
-            color: #007bff;
-            border-color: #007bff;
-        }
-        .custom-pagination .page-link:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-            color: white;
-        }
-        .custom-pagination {
-            position: relative;
-            z-index: 1000; /* Un valor alto para asegurarnos de que esté por encima de otros elementos */
-        }
         nav {
             position: fixed;
             top: 0;
@@ -45,11 +26,10 @@
             align-items: center;
             background-color: #fcfdff;
             box-shadow: 0px 3px 5px 0px rgba(99, 98, 98, 0.75);
-            z-index: 99;
+            z-index: 109;
             transition: all .4s ease;
             margin-top: 0; /* Elimina el margen superior de la barra de navegación */
         }
-
     </style>
 </head>
 <body>
@@ -58,32 +38,43 @@
 
 <main>
 <!--Panel de busqueda-->
-<form method="post" action="{% url 'busqueda personalizada' %}">
+<form method="post" action="{% url 'busqueda personalizada' %}" class="text-center">
     {% csrf_token %}
-        <center><br><br><br><div class="container mt-5">
-        <div class="form-row align-items-center">
-            <div class="col-auto">
+   <br><br> <br> <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
                 <label class="sr-only" for="inputCiudad">Ciudad</label>
-                <input type="text" name="ciudad" class="form-control mb-2" id="inputCiudad" placeholder="Ingresar ciudad">
-            </div>
-            <div class="col-auto">
-                <label class="sr-only" for="selectTamano">Tamaño</label>
-                <select class="form-control mb-2" id="selectTamano" name="tamanio">
-                    <option value="Chico">Pequeño</option>
-                    <option value="Mediano">Mediano</option>
-                    <option value="Grande">Grande</option>
-                </select>
-            </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                    </div>
+                    <input type="text" name="ciudad" class="form-control" id="inputCiudad" placeholder="Ingresar ciudad">
                 </div>
+            </div>
+            <div class="col-md-3">
+                <label class="sr-only" for="selectTamano">Tamaño</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-arrows-alt"></i></div>
+                    </div>
+                    <select class="form-control" id="selectTamano" name="tamanio">
+                        <option value="">Seleccione el tamaño</option>
+                        <option value="Chico">Pequeño</option>
+                        <option value="Mediano">Mediano</option>
+                        <option value="Grande">Grande</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary btn-block">Buscar</button>
+            </div>
         </div>
-    </form>
-    <div class="mt-4">
-            <a href="{% url 'ir publicar' %}" class="btn btn-success"><i class="fas fa-pencil-alt mr-2"></i>Publicar</a>
     </div>
-</div></center>
-
+</form>
+<div class="container mt-4 text-center">
+    <p>Para realizar una publicacion presione aqui: </p>
+    <a href="{% url 'ir publicar' %}" class="btn btn-success"><i class="fas fa-pencil-alt mr-2"></i>Publicar</a>
+</div>
 <!--Panel de perritos-->
 <div class="container__cards">
         {% for publicacion in publicaciones %}
@@ -105,8 +96,7 @@
 
 
 <!--Barra de paginacion-->
-<div class="container mt-5">
-    <nav aria-label="Page navigation" class="custom-pagination">
+<div class="paginacion">
         <ul class="pagination justify-content-center">
             {% if publicaciones.has_previous %}
             <li class="page-item">
@@ -146,7 +136,7 @@
             </li>
             {% endif %}
         </ul>
-    </nav>
+    
 </div>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
