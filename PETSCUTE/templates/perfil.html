@@ -20,10 +20,9 @@
 <body>
     {% include 'reutilizables/nav_bar.html' %}
 <div class="contaiener">
-    <div class="espaciado"></div>
+    <!--<div class="espaciado"></div>-->
     <div class="title">Informacion del perfil</div>
     <form action="{% url 'actualizar perfil' %}" method="post" enctype="multipart/form-data"> <!-- Añade enctype para manejar archivos -->
-       <br>
         <!-- ESTO ES PARA LO DE LA FOTO DE PERFIL -->
         {% csrf_token %}
         <div class="profile-pic-div">

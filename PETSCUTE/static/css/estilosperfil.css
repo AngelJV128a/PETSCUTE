@@ -19,7 +19,7 @@ nav {
 }
 
 body {
-    padding-top: 750px; /* Ajuste la altura según la barra de navegación */
+    padding-top: 400px; /* Ajuste la altura según la barra de navegación */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,11 +37,11 @@ body {
 }
 
 .contaiener .title{
-   margin-bottom: 400px;
+    /*margin-bottom: 400px;*/
     font-size: 25px;
     font-weight: 500;
     position: relative;
-    letter-spacing: 1.5px;
+    /*letter-spacing: 1.5px;*/
 }
 .contaiener .title::before{
     content: '';
