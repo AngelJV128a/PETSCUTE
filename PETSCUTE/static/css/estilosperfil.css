@@ -19,53 +19,31 @@ nav {
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    padding-top: 750px; /* Ajuste la altura según la barra de navegación */
+    padding-top: 400px; /* Ajuste la altura según la barra de navegación */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #fff; /* Ajusta según tus preferencias */
-    color: #000; /* Ajusta según tus preferencias */
+    min-height: 100vh; 
 }
 
- /*-----------------------------------------------------------*/
-.container {
+
+.contaiener{
     max-width: 700px;
     width: 100%;
     background: #fff;
-    border-radius: 5px;
     padding: 25px 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra los elementos horizontalmente */
-    margin-top: 20px; /* Ajusta según sea necesario */
-}
-
-.contenedor{
-    max-width: 700px;
-    width: 100%;
-    background: #fff;
     border-radius: 5px;
-    padding: 25px 30px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra los elementos horizontalmente */
-    margin-top: 50px; /* Ajusta según sea necesario */
-    margin-bottom: 50px; /* Ajusta según sea necesario */
 }
 
-.contenedor .title{
-   margin-bottom: 40px;
+.contaiener .title{
+    /*margin-bottom: 400px;*/
     font-size: 25px;
     font-weight: 500;
     position: relative;
-    letter-spacing: 1.5px;
-    text-align: center;
+    /*letter-spacing: 1.5px;*/
 }
-.contenedorr .title::before{
+.contaiener .title::before{
     content: '';
     position: absolute;
     left: 0;
@@ -75,13 +53,11 @@ body {
     background: radial-gradient(circle, rgba(174,228,238,1) 0%, rgba(148,187,233,1) 100%)
 }
 
-.contenedor form .user-details{
+.contaiener form .user-details{
  display: flex;
  flex-wrap: wrap;
  margin: 20px 0 12px 0;
 }
-
- /*-----------------------------------------------------------*/
 
 form .user-details .input-box{
     margin-bottom: 15px;
@@ -89,34 +65,6 @@ form .user-details .input-box{
     margin-right: 5px;
 }
 
-form .boton1 {
-    margin-top: 20px; /* Ajusta según sea necesario */
-    margin-bottom: 20px; /* Ajusta según sea necesario */
-    height: 45px;
-    margin: 45px 0;
-}
-
-
-form .boton1 input{
-    height:  100%;
-    width: 100%;
-    outline: none;
-    color: #fff;
-    border: none;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 5px;
-    letter-spacing: 1px;
-    background: radial-gradient(circle, rgba(174,228,238,1) 0%, rgba(148,187,233,1) 100%)
-}
-
-form .button input:hover{
-    background: radial-gradient(circle, rgba(174,228,238,1) 0%, rgba(148,187,233,1) 100%)
-}
-
- /*-----------------------------------------------------------*/
-
- 
 .user-details .input-box  .details{
     margin-bottom:  5px;
     font-weight: 500;
@@ -157,8 +105,27 @@ form .button input:hover{
 
 }
 
- /*-----------------------------------------------------------*/
+form .boton1{
+    height: 45px;
+    margin: 45px 0;
+}
 
+form .boton1 input{
+    height:  100%;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: radial-gradient(circle, rgba(174,228,238,1) 0%, rgba(148,187,233,1) 100%)
+}
+
+form .button input:hover{
+    background: radial-gradient(circle, rgba(174,228,238,1) 0%, rgba(148,187,233,1) 100%)
+}
 
 body {
     background-color: #fff; /* Fondo claro */
