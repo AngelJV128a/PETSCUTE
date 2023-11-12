@@ -18,7 +18,9 @@ logger = logging.getLogger(__name__)
 clave_secreta="JLcvfX4si-8N3XwOK2zEchUdJwPm7hZw2hFlhXqHDC4="
 
 def login(request):
-    return render (request,'login.html')
+    contexto = {'Invalido': False,
+                'msg': ''}
+    return render (request,'login.html', contexto)
 
 
 def procesar(request):
@@ -38,11 +40,13 @@ def procesar(request):
                 return render(request, 'menu2.html')
             else:
                 print("Usuario no admitido")
-                contexto = {'Invalido': False}
+                contexto = {'Invalido': False,
+                            'msg': 'Usuario no admitido'}
                 return render(request, 'login.html', contexto)
         except models.Usuario.DoesNotExist:
             print("Usuario no admitido")
-            contexto = {'Invalido': False}
+            contexto = {'Invalido': False,
+                            'msg': 'Usuario no admitido'}
             return render(request, 'login.html', contexto)
     print("Usuario no admitido")
     return render(request, 'procesar.html')
@@ -52,12 +56,22 @@ def registrar(request):
         correo = request.POST.get('correo')
         password= request.POST.get('contrasenia')
         fernet = Fernet(clave_secreta)
-        nuevoUsuario=models.Usuario()
-        nuevoUsuario.nombre=nombre
-        nuevoUsuario.correo=correo
-        nuevoUsuario.contrasenia= fernet.encrypt(password.encode('utf-8'))
-        nuevoUsuario.save()
-    return render(request, 'login.html')
+        mydata = models.Usuario.objects.filter(correo=correo).values()
+        if (mydata):
+            print("Correo ya existente")
+            contexto = {'Invalido': False,
+                            'msg': 'Este correo ya esta registrado'}
+            return render(request, 'login.html', contexto)
+        else:
+            nuevoUsuario=models.Usuario()
+            nuevoUsuario.nombre=nombre
+            nuevoUsuario.correo=correo
+            nuevoUsuario.contrasenia= fernet.encrypt(password.encode('utf-8'))
+            nuevoUsuario.save()
+            print("Cuenta registrada con exito!")
+            contexto = {'Invalido': False,
+                            'msg': 'Cuenta registrada con exito!'}
+    return render(request, 'login.html', contexto)
 
 def irAForo(request):
     publicaciones_lista = models.Publicacion.objects.all()
