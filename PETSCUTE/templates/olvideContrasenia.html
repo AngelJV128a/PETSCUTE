@@ -1,47 +1,52 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña</title>
-    <!-- Asegúrate de agregar tus estilos y scripts si los necesitas -->
+    <!-- Enlaza el archivo de estilos CSS -->
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 </head>
+
 <body>
 
-<div class="container-form password-recovery">
-    <div class="information">
-        <div class="info-childs">
-            <h2>Recuperar Contraseña</h2>
-            <p>Por favor, ingresa el token que fue enviado a tu correo electrónico.</p>
+    <div class="container-form password-recovery">
+        <div class="information">
+            <div class="info-childs">
+                <h2>Recuperar Contraseña</h2>
+                <p>Por favor, ingresa el token que fue enviado a tu correo electrónico.</p>
+            </div>
+        </div>
+        <div class="form-information">
+            <div class="form-information-childs">
+                <form class="form" method="POST" action="{% url 'enviar token' %}">
+                    {% csrf_token %}
+
+                    <label>
+                        <i class='bx bx-envelope'></i>
+                        <input type="email" name="correo" placeholder="Correo electrónico">
+                    </label>
+                    <br>
+                    <label>
+                        <i class='bx bx-lock-alt'></i>
+                        <input type="text" name="token" placeholder="Token">
+                    </label>
+
+                    <input type="submit" value="Recibir Token">
+                </form>
+                <p>No recibí el token?
+                    <button type="button" class="btn-send-token">Verificar Token</button>
+                    <!-- O puedes usar un enlace como lo tenías antes: -->
+                    <!-- <a href="#">Reenviar token</a> -->
+                </p>
+            </div>
         </div>
     </div>
-    <div class="form-information">
-        <div class="form-information-childs">
-            <form class="form" method="POST" action="{% url 'enviar token' %}">
-                {% csrf_token %}
-
-                <label >
-                    <i class='bx bx-envelope' ></i>
-                    <input type="email" name="correo" placeholder="Correo electronico" >
-                </label>
-                <br>
-                <label >
-                    <i class='bx bx-lock-alt' ></i>
-                    <input type="text" name="token" placeholder="Token">
-                </label>
-
-                <input type="submit" value="Recibir Token">
-            </form>
-            <p>No recibí el token?
-                <button type="button" class="btn-send-token">Verificar Token</button>
-                <!-- O puedes usar un enlace como lo tenías antes: -->
-                <!-- <a href="#">Reenviar token</a> -->
-            </p>
-        </div>
-    </div>
-</div>
-
 
 </body>
+
 </html>

@@ -22,16 +22,15 @@
   <!-- Estilos CSS personalizados para el contenedor del mapa -->
   <style>
     /* Estilos CSS personalizados para el contenedor del mapa */
-    #map-container {
+    #map {
       display: flex;
-      justify-content: center; /* Centra horizontalmente */
-      align-items: center; /* Centra verticalmente */
-      position: relative;
-      width: 100%;
-      height: calc(100vh - 15px); /* Ajusta el valor según el tamaño de tu barra de navegación */
-      margin-top: 15px; /* Igual al valor de la altura de la barra de navegación */
-      margin-left: auto;
-      margin-right: auto;
+      background-color: antiquewhite;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px; /* Añade un margen superior igual a la altura de la barra de navegación */
+      padding-bottom: 60px; /* Añade un margen inferior igual a la altura del pie de página */
+            width: 90%;
+      height: 90%;
     }
     
         /* Estilos para la barra de navegación especiales para esta sección */
@@ -51,26 +50,123 @@
     }
 
     
-    #map {
-      width: 90%;
-      height: 90%;
+
+    .container {
+    display: flex;
+    background-color: antiquewhite;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px; /* Añade un margen superior igual a la altura de la barra de navegación */
+    padding-bottom: 60px; /* Añade un margen inferior igual a la altura del pie de página */
+    z-index: -1; /* Ajusta este valor según sea necesario */
+    height:700px;
+    width: 50vw; /* 50% del ancho de la ventana */
+      border-radius: 20px; /* Añade bordes redondeados */
+    overflow: hidden; /* Asegura que el contenido no se desborde del contenedor redondeado */
     }
-    
+
+.custom-marker {
+    background-color: #ff0000; /* Ejemplo de color de fondo */
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    color: #ffffff; /* Color del texto */
+    font-weight: bold;
+
+}
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* Estilos del formulario */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
   </style>
 </head>
 <body>
  {% include 'reutilizables/nav_bar.html' %}
+
  <main>
-  <div id="map-container">
+  <div  class="container">
     <h1><center>Mapa de Jalisco con Organizaciones</center></h1>
     <div id="map"></div>
-  </div>
+      <br>
+      <br>
+<button onclick="openModal()">Ingresar Asociación</button>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Formulario de Asociación</h2>
+        <form>
+            <label for="nombre">Nombre de la organización:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="foto">Foto:</label>
+            <input type="file" id="foto" name="foto" accept="image/*">
+
+            <label for="ubicacion">Ubicación:</label>
+            <input type="text" id="ubicacion" name="ubicacion" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
    </main>
   {% include 'reutilizables/footer.html' %}
   <script>
-    var map = L.map('map').setView([20.672, -103.387], 10); // Coordenadas de Jalisco y nivel de zoom
+    var map = L.map('map').setView([20.672, -103.387], 10);
 
-    // Agrega una capa de mapas de OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
@@ -104,6 +200,18 @@
     organizaciones.forEach(function(org) {
       var marker = L.marker([org.latitud, org.longitud]).addTo(map);
 
+
+// Obtener el contenedor del mapa
+var mapContainer = map.getContainer();
+
+// Aplicar estilos al contenedor del mapa
+mapContainer.style.display = 'flex';
+mapContainer.style.backgroundColor = 'antiquewhite';
+mapContainer.style.flexDirection = 'column';
+mapContainer.style.alignItems = 'center';
+mapContainer.style.paddingTop = '100px';
+mapContainer.style.paddingBottom = '60px';
+mapContainer.style.zIndex = '1'; // Ajusta este valor según sea necesario
       // Crea una ventana emergente con información de la organización
       marker.bindPopup(
         '<strong>' + org.nombre + '</strong><br>' +
@@ -112,5 +220,22 @@
       );
     });
   </script>
+<script>
+    function openModal() {
+        document.getElementById('myModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Cerrar la ventana modal si el usuario hace clic fuera de ella
+    window.onclick = function(event) {
+        var modal = document.getElementById('myModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
 </body>
 </html>
