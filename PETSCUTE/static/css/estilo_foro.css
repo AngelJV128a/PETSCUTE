@@ -139,7 +139,6 @@ nav {
 /*ESTILOS BARRA DE PAGINAION*/
 
 .paginacion{
-    /*display: flex;*/
     background-color: white;
     position: relative;
     overflow: hidden;
