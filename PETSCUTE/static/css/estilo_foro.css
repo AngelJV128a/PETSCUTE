@@ -11,7 +11,7 @@
 body{
     background: #F1FAFF;
     height: 100vh;
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     padding-top: 80px;
@@ -139,7 +139,7 @@ nav {
 /*ESTILOS BARRA DE PAGINAION*/
 
 .paginacion{
-    display: flex;
+    /*display: flex;*/
     background-color: white;
     position: relative;
     overflow: hidden;
