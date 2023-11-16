@@ -5,55 +5,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/estilosm2.css' %}"><!--/PETSCUTE/static/css/estilosm2.css-->
+    <link rel="stylesheet" href="{% static 'css/estilos_footer.css' %}">
+   <!--Estos 3 son para el diseño de las fotografias--> 
+    <link rel="stylesheet" href="{% static 'css/detallesP.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://unpkg.com/open-props/open-props.min.css'><link rel="stylesheet" href="{% static 'css/detallesP.css' %}">
+
     <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
+    <!--Fuentes e iconos-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-     <!-- Enlace a Font Awesome para el ícono -->
+     <!-- Enlace a Font Awesome para el ícono '?'-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>Detalles de la Mascota</title>
-    <style>
-        /* Estos estilos son básicos y solo para ilustrar. Añade o modifica según tu diseño. */
-        .card {
-            border: 1px solid #e0e0e0;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .card img {
-            max-width: 300px;
-            margin-bottom: 20px;
-        }
-        .card-title {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-    </style>
 </head>
 <body>
  {% include 'reutilizables/nav_bar.html' %}
  <main>
 <br><br><br><div class="card">
-    <!-- Imagen de la mascota -->
-    <img src="{{mascota.foto}}">
+    <div class="card-content">
+        <!-- Image section -->
+        <div class="image-section">
+            <div class="track-wrapper">
+                <ul class="track">
+                    <li class="track__item">
+                        <img src="{{mascota.foto}}">
+                    </li>
+                    <li class="track__item">
+                        <img src="{{mascota.foto}}">
+                    </li>
+                    <li class="track__item">
+                        <img src="{{mascota.foto}}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Details section -->
+        <div class="details-section">
+            <div class="card-title"></div>
+            <label>Nombre: </label>
+            <p class="p1">{{mascota.nombreMascota}}</p>
 
-    <!-- Detalles de la mascota -->
-    <div class="card-title">Nombre: {{mascota.nombreMascota}}</div>
-    <p>Edad: {{mascota.edadMascota}} años</p>
-    <p>Sexo: {{mascota.sexoMascota}}</p>
-    <p>Fecha de publicación: {{mascota.fechaPublicacion}}</p>
-    <p>Dirección: {{mascota.direccion}}</p>
-    <p>Ciudad: [ciudad]</p>
+            <label>Edad: </label>
+            <p class="p1">{{mascota.edadMascota}} años</p>
 
-    <!-- Detalles del usuario que lo publicó -->
-    <hr> <!-- Una línea de separación -->
-    <p>Publicado por: [nombre del usuario]</p>
+            <label>Sexo: </label>
+            <p class="p1">{{mascota.sexoMascota}}</p>
 
-    <!-- Botón de Adoptar más estrecho -->
-    <button style="background-color: #4CAF50; color: white; padding: 5px 10px; width: 80px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Adoptar</button>
+            <label>Fecha de publicacion</label>
+            <p class="p1">{{mascota.fechaPublicacion}}</p>
+
+            <label>Direccion </label>
+            <p class="p1">{{mascota.direccion}}</p>
+
+            <label>Ciudad </label>
+            <p class="p1">[ciudad]</p>
+
+            <!-- Detalles del usuario que lo publicó -->
+            <hr> <!-- Una línea de separación -->
+            <p class="p1">Publicado por: [nombre del usuario]</p>
+
+            <!-- Botón de Adoptar más estrecho -->
+            <button class="boton">Adoptar</button>
+        </div>
+    </div>
 </div>
 </main>
 

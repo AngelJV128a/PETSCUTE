@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="{% static 'css/estilosm2.css' %}"><!--/PETSCUTE/static/css/estilosm2.css-->
     <link rel="stylesheet" href="{% static 'css/estilo_foro.css' %}">
     <link rel="stylesheet" href="{% static 'css/estilos_footer.css'%}">
+    <link rel="stylesheet" href="{% static 'css/card.css'%}">
+    <link rel="stylesheet" href="{% static 'css/barra.css'%}">
+    <link rel="stylesheet" href="{% static 'css/paginacion.css'%}">
     <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +17,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
      <!-- Enlace a Font Awesome para el ícono -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet"/>
     <title>Foro</title>
     <style>
         nav {
@@ -36,8 +41,8 @@
 
  {% include 'reutilizables/nav_bar.html' %}
 
-<main>
-<!--Panel de busqueda-->
+
+<!--Panel de busqueda   DEJE EL CODIGO POR SI SE OCUPABA 
 <form method="post" action="{% url 'busqueda personalizada' %}" class="text-center">
     {% csrf_token %}
    <div class="container mt-5">
@@ -74,7 +79,33 @@
 <div class="container mt-4 text-center">
     <p>Para realizar una publicacion presione aqui: </p>
     <a href="{% url 'ir publicar' %}" class="btn btn-success"><i class="fas fa-pencil-alt mr-2"></i>Publicar</a>
-</div>
+</div>-->
+<div class = "wrapper">
+    <div id="search-container">
+        <input type="search" id="search-input" placeholder="Busca tu mascota ideal aqui.."/>
+        <button id="search">Buscar</button>
+      </div>
+      <div id="buttons">
+        <button class="button-value" onclick="filterProduct('all')">All</button>
+        <button class="button-value" onclick="filterProduct('Perros')">
+          Perros
+        </button>
+        <button class="button-value" onclick="filterProduct('Gatos')">
+          Gatos
+        </button>
+        <button class="button-value" onclick="filterProduct('Pajaros')">
+          Pajaros
+        </button>
+        <button class="button-value" onclick="filterProduct('Cuyos')">
+          Cuyos
+        </button>
+        <button class="button-value" onclick="filterProduct('Chico')">
+            Chico
+        </button>
+        <button class="button-value" onclick="filterProduct('Grande')">
+            Grande
+        </button>
+      </div>
 <!--Panel de perritos-->
 <div class="container__cards">
         {% for publicacion in publicaciones %}
@@ -95,7 +126,7 @@
 </div>
 
 
-<!--Barra de paginacion-->
+<!--Barra de paginacion
 <div class="paginacion">
         <ul class="pagination justify-content-center">
             {% if publicaciones.has_previous %}
@@ -136,9 +167,32 @@
             </li>
             {% endif %}
         </ul>
-    
+</div>-->
+
+<div class="pagination">
+    <span class="page-btn page-step" data-shown="1">&laquo;</span>
+    <a href="#page-1" class="page-btn page-step" data-shown="2">&laquo;</a>
+    <a href="#page-2" class="page-btn page-step" data-shown="3">&laquo;</a>
+    <a href="#page-3" class="page-btn page-step" data-shown="4">&laquo;</a>
+    <a href="#page-4" class="page-btn page-step" data-shown="5">&laquo;</a>
+    <!-- Previous -->
+
+    <a href="#page-1" id="page-1" class="page-btn">1</a>
+    <a href="#page-2" id="page-2" class="page-btn">2</a>
+    <a href="#page-3" id="page-3" class="page-btn">3</a>
+    <a href="#page-4" id="page-4" class="page-btn">4</a>
+    <a href="#page-5" id="page-5" class="page-btn">5</a>
+    <!-- Page numbers -->
+
+    <a href="#page-2" class="page-btn page-step" data-shown="1">&raquo;</a>
+    <a href="#page-3" class="page-btn page-step" data-shown="2">&raquo;</a>
+    <a href="#page-4" class="page-btn page-step" data-shown="3">&raquo;</a>
+    <a href="#page-5" class="page-btn page-step" data-shown="4">&raquo;</a>
+    <span class="page-btn page-step" data-shown="5">&raquo;</span>
+    <!-- Next -->
 </div>
-</main>
+
+<script src="{% static 'js/barra.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

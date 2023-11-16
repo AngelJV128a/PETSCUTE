@@ -14,69 +14,84 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>PUBLICAR</title>
 
 </head>
-<body>
-    {% include 'reutilizables/nav_bar.html' %}
-<div class="container">
-    <div class="formulario">
-        <form action="{% url 'salvar publicacion'%}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-left">
-                <label for="nombre_mascota">Nombre de la mascota:</label>
-                <input type="text" id="nombre_mascota" name="nombre_mascota" required>
-
-                <label for="tamanio">Tamaño:</label>
-                <select id="tamanio" name="tamanio">
-                    <option value="Chico">Pequeño</option>
-                    <option value="Mediano">Mediano</option>
-                    <option value="Grande">Grande</option>
-                </select>
-
-                <label for="edad">Edad de la mascota (en años):</label>
-                <input type="number" id="edad" name="edad" required>
-
-                <label for="sexo">Sexo de la mascota:</label>
-                <select id="sexo" name="sexo">
-                    <option value="M">Macho</option>
-                    <option value="H">Hembra</option>
-                </select>
-                <label for="tipo">Especie:</label>
-                <select id="tipo" name="tipo">
-                    <option value="1">Perro</option>
-                    <option value="2">Gato</option>
-                    <option value="3">Hamster</option>
-                    <option value="4">Conejo</option>
-                    <option value="5">Perico</option>
-                </select>
-                <label for="pais">País:</label>
-                <input type="text" id="pais" name="pais" required>
-
-                <label for="estado">Estado :</label>
-                <input type="text" id="estado" name="estado" required>
-
-                <label for="municipio">Municipio:</label>
-                <input type="text" id="municipio" name="municipio" required>
-
-                <label for="comentario">Comentario:</label>
-                <br><textarea name="comentario" id="comentario" rows="4" cols="50">Coloca una breve descripcion aqui!</textarea>
+<body>   
+    <div class="card-container">
+        <div class="card-content">
+           <br><br> <div class="card-form">
+                <form action="{% url 'salvar publicacion'%}" method="post" enctype="multipart/form-data">
+                    {% include 'reutilizables/nav_bar.html' %}
+                    {% csrf_token %}
+                    <div class="form-colum">
+                    <label for="nombre_mascota">Nombre de la mascota:</label>
+                    <input type="text" id="nombre_mascota" name="nombre_mascota" required>
+    
+                    <label for="tamanio">Tamaño:</label>
+                    <select id="tamanio" name="tamanio">
+                        <option value="Chico">Pequeño</option>
+                        <option value="Mediano">Mediano</option>
+                        <option value="Grande">Grande</option>
+                    </select>
+    
+                    <label for="edad">Edad de la mascota (en años):</label>
+                    <input type="number" id="edad" name="edad" required>
+    
+                    <label for="sexo">Sexo de la mascota:</label>
+                    <select id="sexo" name="sexo">
+                        <option value="M">Macho</option>
+                        <option value="H">Hembra</option>
+                    </select>
+                    <label for="tipo">Especie:</label>
+                    <select id="tipo" name="tipo">
+                        <option value="1">Perro</option>
+                        <option value="2">Gato</option>
+                        <option value="3">Hamster</option>
+                        <option value="4">Conejo</option>
+                        <option value="5">Perico</option>
+                    </select>
+                    <label for="pais">País:</label>
+                    <input type="text" id="pais" name="pais" required>
+                </div>
+                <div class="form-column">
+                    <label for="estado">Estado :</label>
+                    <input type="text" id="estado" name="estado" required>
+    
+                    <label for="municipio">Municipio:</label>
+                    <input type="text" id="municipio" name="municipio" required>
+    
+                    <label for="comentario">Comentario:</label>
+                    <br><textarea name="comentario" id="comentario" rows="4" cols="50">Coloca una breve descripcion aqui!</textarea>
+                </div>
+                <input type="submit" value="Enviar">  
+        </div>
+        <div class="card-upload">
+            <div class="wrapper">
+                <div class="box">
+                    <div class="input-bx">
+                        <h2 class="upload-area-title">Upload</h2>
+                        <form action="">
+                            <input type="file" id="upload" accept=".doc, .docx, .pdf, .jpg, .png" hidden>
+                            <label for="upload" class="uploadlabel">
+                                <span><i class="fa fa-cloud-upload"></i></span>
+                                <p>Click to upload</p>
+                            </label>
+                        </form>
+                    </div>
+                    <div id="filewrapper">
+                        <h3 class="uploaded">Uploaded Image</h3>
+                    </div>
+                </div>
             </div>
-            <div class="form-right">
-                <!--UTILICE LO MIMSO QUE PARA LA FOTO DE PERFIL, MÁS NO SE SI SEA NECESARIO CAMBIAR VARIABLES Y EL CODIGO JS-->
-                <div class="profile-pic-div">
-                    <img src="{% static 'img/image.jpg' %}" id="photo"> <br/>
-                    <input type="file" id="file" name="foto"> <br/>
-                    <label for="file" id="uploadBtn">Choose Photo</label>
-               </div>
-            </div>
-            <input type="submit" value="Enviar">
-        </form>
+        </div>
+        
+    </form>
     </div>
-    </div>
-
-
-    {% include 'reutilizables/footer.html' %}
-     <script src="{% static 'js/code.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+  <!--  <script src="{% static 'js/code.js' %}"></script>-->
 </body>
 </html>

@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 *{
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+    border: none;
+    outline: none;
+    font-family: "Poppins", sans-serif; 
 }
+
 
 
 body{
@@ -15,7 +18,9 @@ body{
     align-items: center;
     justify-content: center;
     padding-top: 80px;
-
+    background-origin: content-box;
+    background-position: center;
+    background-size: cover;
 }
 
 nav {
@@ -31,136 +36,4 @@ nav {
     z-index: 99;
     transition: all .4s ease;
     margin-top: 0; /* Elimina el margen superior de la barra de navegación */
-}
-
-.container__cards{
-    max-width: 1200px;
-    margin: auto;
-    margin-top: 100px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.card{
-    width: 300px;
-    margin: 10px;
-    transition: all 300ms;
-}
-
-.card:hover{
-    width: 350px;
-}
-
-.card .cover{
-    width: 100%;
-    height: 250px;  /*se expande al pasar por ella*/
-    position: relative;
-    overflow: hidden;
-    border-radius: 1px;
-}
-
-.card .cover img{
-    width: 250px;
-    display: block;
-    margin: auto;
-    position: relative;
-    top: 40px;
-    z-index: 1;
-    filter: drop-shadow(5px 5px 4px rgba(0,0,0,0.5));
-    transition: all 400ms;
-}
-
-.card:hover .cover img{
-    top: 25px;
-    filter: none;
-}
-
-.card .img__back{
-    width: 100%;
-    height: 400px;
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    background-size: cover;
-    border-radius: 20px;
-    transition: all 300ms;
-}
-
-.card:nth-of-type(even) .img__back{
-    background-image: url(../img/bg1.jpg);
-}
-
-.card:nth-of-type(odd) .img__back{
-    background-image: url(../img/bg2.jpg);
-}
-
-
-.card:hover .img__back{
-    bottom: -50px;
-}
-
-.card .description{
-    background: white;
-    margin-top: -10px;
-    padding: 20px;
-    border-radius: 0px 0px 20px 20px;
-    transition: all 300ms;
-}
-
-.card:hover .description{
-    padding: 40px;
-}
-
-.card .description h2{
-    margin-top: 10px;
-}
-
-.card .description p{
-    margin-top: 10px;
-}
-
-.card .description input{
-    padding: 10px 40px;
-    margin-top: 20px;
-    border: none;
-    background: #A6359D;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 300ms;
-}
-
-.card .description input:hover{
-    background: #83277b;
-}
-
-/*ESTILOS BARRA DE PAGINAION*/
-
-.paginacion{
-    background-color: white;
-    position: relative;
-    overflow: hidden;
-}
-
-.paginacion ul a {
-    width: 100px;
-    height: 80px;
-    line-height: 80px;
-    text-align: center;
-    color: brown;
-    font-size: 19px;
-    font-weight: 700;
-    transition: .2s linear;
-}
-
-.paginacion ul a:hover {
-    background-color: rgb(60, 80, 209);
-    color: white;
-}
-
-
-form {
-    z-index: 98;
 }
