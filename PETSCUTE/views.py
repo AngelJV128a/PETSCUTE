@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from django.http import HttpResponse
+import json
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password,check_password
 from . import models
@@ -12,10 +14,34 @@ from django.core.paginator import Paginator
 import logging
 from django.contrib.auth.backends import ModelBackend
 from cryptography.fernet import Fernet
+
 from django.db import connection
+import nltk
+from nltk.chat.util import Chat, reflections
+
 logger = logging.getLogger(__name__)
 
 clave_secreta="JLcvfX4si-8N3XwOK2zEchUdJwPm7hZw2hFlhXqHDC4="
+
+
+
+# Descargar el conjunto de datos de pares de respuestas de ejemplo de NLTK
+nltk.download('nps_chat')
+
+# Importar el conjunto de datos de pares de respuestas
+posts = nltk.corpus.nps_chat.xml_posts()
+
+# Crear pares de respuestas para el chatbot
+pairs = [
+    (r'Hola', ['Mi nombre es PETBOT, dime en que te puedo ayudar']),
+    (r'Necesito (.*)', ['¿Por qué necesitas {0}?', '¿Cómo usarías {0}?']),
+    (r'(.*) ayuda (.*)', ['Puedo ayudarte con {1}.']),
+    (r'(.*) tu nombre?', ['Soy un chatbot.']),
+    (r'(.*) (ubicación|ciudad) ?', ['Soy un asistente virtual. No tengo una ubicación física.']),
+]
+
+# Crear el chatbot con los pares de respuestas
+chatbot = Chat(pairs, reflections)
 
 def login(request):
     contexto = {'Invalido': False,
@@ -120,6 +146,9 @@ def irOlvidePassword(request):
 
 def irAPublicar(request):
     return render(request,'publicar.html')
+
+def irAChatbot(request):
+    return render(request,'chatbot.html')
 
 def irDetallesPublicacion(request,id):
     try:
@@ -239,3 +268,29 @@ def actualizarPerfil(request):
 
         return redirect('ir perfil')
     return render(request,'perfil.html')
+
+@csrf_exempt
+def ajax_chat(request):
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+        user_input=data.get('user_input')
+
+        # Resto de la lógica aquí
+        response_data = get_chatbot_response(user_input)
+        print(response_data)
+        return JsonResponse(response_data,safe=False)
+    except KeyError:
+        return JsonResponse({'error': 'No se proporcionó la clave "user_input" en la solicitud'}, status=400)
+    except Exception as e:
+        print(f'Error: {str(e)}')
+        return JsonResponse({'error': 'Error interno del servidor'}, status=500)
+
+def get_chatbot_response(user_input):
+    # Aquí iría tu lógica para obtener la respuesta del chatbot
+    # Puedes usar el código que proporcionaste anteriormente
+
+    user="Cual es tu nombre?"
+    response=chatbot.respond(user)
+    print("chatbot: ",response)
+
+    return chatbot.respond(user_input)

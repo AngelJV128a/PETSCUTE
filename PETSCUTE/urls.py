@@ -36,6 +36,8 @@ urlpatterns = [
     path('enviarToken/',views.enviarToken,name="enviar token"),
     path('detallesPost/<int:id>/',views.irDetallesPublicacion,name="detalles publicacion"),
     path('actualizarPerfil/',views.actualizarPerfil,name="actualizar perfil"),
+    path('chatbot/',views.irAChatbot,name="ir chatbot"),
+    path('chatbot/ajax/', views.ajax_chat, name='ajax_chat'),
 
     path('publicar/salvar/',views.salvar_publicacion,name="salvar publicacion"),
 

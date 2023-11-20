@@ -12,13 +12,15 @@
     <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+    <!--<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
      <!-- Enlace a Font Awesome para el ícono -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/boton.css'%}">
     <title>Foro</title>
     <style>
         nav {
@@ -190,6 +192,8 @@
     <a href="#page-5" class="page-btn page-step" data-shown="4">&raquo;</a>
     <span class="page-btn page-step" data-shown="5">&raquo;</span>
     <!-- Next -->
+
+
 </div>
 
 <script src="{% static 'js/barra.js' %}"></script>
@@ -199,5 +203,7 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 {% include 'reutilizables/footer.html' %}
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
