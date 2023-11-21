@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/style1.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+<body>
+    <input type="checkbox" id="active">
+    <label for="active" class="menu-btn"><span></span></label>
+    <label for="active" class="close"></label>
+    <div class="wrapper">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="usuariosadmin copy.html">Usuarios</a></li>
+        <li><a href="publicaciones.html">Publicaciones</a></li>
+        <li><a href="adopciones.html">Adopciones</a></li>
+        <li><a href="#">Salir</a></li>
+      </ul>
+    </div>
+    <div class="content">
+        <main class="table">
+            <section class="table__header">
+                <h1>Usuarios</h1>
+                <div class="input-group">
+                    <input type="search" placeholder="Search Data...">
+                   <!--Icono de buscar--> <img src="" alt="">
+                </div>
+            </section>
+            <section class="table__body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Id <span class="icon-arrow">&UpArrow;</span></th>
+                            <th> Usuario <span class="icon-arrow">&UpArrow;</span></th>
+                            <th> Municipio <span class="icon-arrow">&UpArrow;</span></th>
+                            <th> Fecha <span class="icon-arrow">&UpArrow;</span></th>
+                            <th> Publicaciones <span class="icon-arrow">&UpArrow;</span></th>
+                            <th> Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> 1 </td>
+                            <td> <img src="" alt="">Angel</td>
+                            <td> Guadalajara </td>
+                            <td> 17 Abril, 2022 </td>
+                            <td> <strong> 1 </strong></td>
+                            <td> <button class="boton-rojo">Eliminar</button> </td>
+                        </tr>
+                        <tr>
+                            <td> 2 </td>
+                            <td><img src="" alt=""> Karla </td>
+                            <td> Zapopan </td>
+                            <td> 27 Agosto, 2023 </td>
+                            <td> <strong>6</strong> </td>
+                            <td> <button class="boton-rojo">Eliminar</button> </td>
+                        </tr>
+                        <tr>
+                            <td> 3</td>
+                            <td><img src="" alt=""> Angel Ortega </td>
+                            <td> Zapotlanejo </td>
+                            <td> 14 Marzo, 2023 </td>
+                            <td> <strong>2</strong> </td>
+                            <td> <button class="boton-rojo">Eliminar</button> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+<script src="{% static 'js/scriptusuario.js' %}"></script>
+</html>
