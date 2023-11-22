@@ -67,3 +67,14 @@ class Formulario(models.Model):
     class Meta:
         managed = False
         db_table = 'formularios'
+
+class Adopcion(models.Model):
+    id= models.AutoField(primary_key=True, db_column="id")
+    idPublicacion = models.ForeignKey(Publicacion, db_column="id_publicacion", on_delete=models.CASCADE)
+    idFormulario = models.ForeignKey(Formulario, db_column="id_formulario", on_delete=models.CASCADE)
+    ciudad = models.CharField(max_length=45, db_column="ciudad")
+    revision = models.CharField(max_length=45, db_column="revision")
+
+    class Meta:
+        managed = False
+        db_table = 'adopciones'
