@@ -54,3 +54,16 @@ class Publicacion(models.Model):
     class Meta:
         managed = False
         db_table = 'publicaciones'
+
+class Formulario(models.Model):
+    id= models.AutoField(primary_key=True, db_column="id")
+    idPublicacion = models.ForeignKey(Publicacion, db_column="id_publicacion", on_delete=models.CASCADE)
+    idUsuarioAdoptador = models.ForeignKey(Usuario, db_column="id_usuario_adoptador", on_delete=models.CASCADE)
+    razon = models.CharField(max_length=128, db_column="razon")
+    lugar = models.CharField(max_length=128, db_column="lugar")
+    experiencia = models.CharField(max_length=128, db_column="experiencia")
+    comentario = models.CharField(max_length=128, db_column="comentario")
+
+    class Meta:
+        managed = False
+        db_table = 'formularios'

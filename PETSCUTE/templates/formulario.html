@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de adopcion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Formulario de adopcion</h1>
+    <form id="Form-adopcion" name="Form-adopcion">
+        <label for="razon">Razon por la cual desea adoptar: </label><br>
+        <textarea id="razon" name="razon" rows="4" cols="50" placeholder="Escriba su razon" maxlength="128"></textarea><br><br>
+        <label for="lugar">¿En donde viviria?: </label><br>
+        <textarea id="lugar" name="lugar" rows="4" cols="50" placeholder="Describa el lugar" maxlength="128"></textarea><br><br>
+        <label for="experiencia">¿Ya ha tenido experiencia con este tipo de mascotas antes?: </label>
+        <select name="experiencia" id="experiencia">
+            <option value="0">Selecciona</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+        </select><br><br>
+        <label for="comentario">Comente su experiencia de manera breve: </label><br>
+        <textarea id="comentario" name="comentario" rows="4" cols="50" placeholder="Escriba su experiencia (maximo 128 caracteres)" maxlength="128"></textarea><br><br>
+        <input type="button" value="Enviar">
+    </form>
+</body>
+</html>
