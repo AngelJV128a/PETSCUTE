@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
@@ -13,15 +14,7 @@
     <input type="checkbox" id="active">
     <label for="active" class="menu-btn"><span></span></label>
     <label for="active" class="close"></label>
-    <div class="wrapper">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="usuariosadmin copy.html">Usuarios</a></li>
-        <li><a href="publicaciones.html">Publicaciones</a></li>
-        <li><a href="adopciones.html">Adopciones</a></li>
-        <li><a href="#">Salir</a></li>
-      </ul>
-    </div>
+    {% include 'reutilizables/footer_admin.html' %}
     <div class="content">
     <main class="table">
         <section class="table__header">
@@ -45,39 +38,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                {% for adopcion in adopciones %}
                     <tr>
-                        <td> 1 </td>
-                        <td> <img src="" alt="">Tilin</td>
-                        <td> Guadalajara </td>
-                        <td> 17 Dec, 2022 </td>
-                        <td>
-                            <p class="status aceptada">Aceptada</p>
-                        </td>
-                        <td> <button class="boton-azul">Ver</button> </td>
-                        <td> <button class="boton-rojo">Eliminar</button> </td>
-                    </tr>
-                    <tr>
-                        <td> 2 </td>
-                        <td><img src="" alt=""> Joshua </td>
-                        <td> Guadajara </td>
-                        <td> 27 Aug, 2023 </td>
-                        <td>
-                            <p class="">Rechazada</p>
-                        </td>
-                        <td> <button class="boton-azul">Ver</button> </td>
-                        <td> <button class="boton-rojo">Eliminar</button> </td>
-                    </tr>
-                    <tr>
-                        <td> 3</td>
-                        <td><img src="" alt=""> Miguel </td>
-                        <td> Zapoan </td>
-                        <td> 14 Mar, 2023 </td>
+                        <td> {{adopcion.id}}</td>
+                        <td><img src="{{adopcion.id_publicacion.foto}}" alt=""> {{adopcion.id_publicacion.nombreMascota}} </td>
+                        <td> {{adopcion.ciudad}} </td>
+                        <td> {{adopcion.fecha}} </td>
                         <td>
                             <p class="">Sin revisar</p>
                         </td>
-                        <td> <button class="boton-azul">Ver</button> </td>
+                        <td> <button class="boton-azul" onclick="window.location.href='{% url 'detalles_formulario' id=adopcion.id_formulario.id %}'">Ver</button> </td>
                         <td> <button class="boton-rojo">Eliminar</button> </td>
                     </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </section>

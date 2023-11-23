@@ -1,8 +1,6 @@
 aviso de registro 
 aviso de corrreo en uso 
-crud de asociaciones 
-diseño de paginacion 
-diseño de barra de busqueda 
+crud de asociaciones
 diseño del perfil detallado de la mascota 
 agregar descripcion a la mascota
 acomodo del mapa de las asociaciones 

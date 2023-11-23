@@ -5,12 +5,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password,check_password
 from . import models
+from django.db.models import Count
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseBadRequest
 import random
 from django.core.files.storage import FileSystemStorage
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator,  EmptyPage, PageNotAnInteger
 import logging
 from django.contrib.auth.backends import ModelBackend
 from cryptography.fernet import Fernet
@@ -109,27 +110,26 @@ def irAForo(request):
     return render(request, 'foro.html', {'publicaciones': publicaciones})
 
 def busquedaPersonalizada(request):
-    ciudad = request.POST.get('ciudad')
-    tamanio = request.POST.get('tamanio')
-    print(ciudad)
-    print(tamanio)
+    if request.method == 'POST':
+        filtro_seleccionado = request.POST.get('filtro', 'all')
+        print(filtro_seleccionado)
+        paginator = None  # Define paginator antes de los bloques if/elif
+    # Lógica de filtrado basada en el valor de "filtro_seleccionado"
+        if filtro_seleccionado == 'all':
+            todos_los_registros = models.Publicacion.objects.all()
+            paginator = Paginator(todos_los_registros, 18)
+        elif filtro_seleccionado in ['Perro', 'Gato', 'Pajaro', 'Cuyo']:
+            especie_id = models.Animal.objects.get(nombre=filtro_seleccionado).id
+            registros_por_especie = models.Publicacion.objects.filter(idAnimal=especie_id).order_by('id')
+            paginator = Paginator(registros_por_especie, 18)
+        elif filtro_seleccionado in ['Chico', 'Grande']:
+            registros_por_tamano = models.Publicacion.objects.filter(tamanioMascota=filtro_seleccionado)
+            paginator = Paginator(registros_por_tamano, 18)
 
-    query = models.Publicacion.objects.all()  # Obtén todos los registros
 
-    if ciudad:
-        query = query.filter(idUbicacion__estado=ciudad)
-
-    if tamanio:
-        query = query.filter(tamanioMascota=tamanio)
-
-    query = query.order_by('-fechaPublicacion')  # Ordena la consulta por fecha de publicación
-    # Crea un objeto Paginator para los resultados
-    paginator = Paginator(query, 18)  # Muestra 18 resultados por página
-
-    page_number = request.GET.get('page')  # Obtén el número de página de la solicitud GET
-    page = paginator.get_page(page_number)  # Obtén la página actual
-
-    return render(request, 'foro.html', {'publicaciones': page})
+    publicaciones = paginator.page(1)
+    print(publicaciones)
+    return render(request, 'foro.html', {'publicaciones': publicaciones})
 
 def irAPerfil(request):
     id=request.session['id']
@@ -156,6 +156,82 @@ def irDetallesPublicacion(request,id):
     except models.Publicacion.DoesNotExist:
         resultado = None
     return render(request,'detallesPublicacion.html',{'mascota': resultado})
+
+def irAFormularioAdopcion(request,id):
+    return render(request,'formulario.html',{'id_mascota':id})
+
+def insertarFormulario(request):
+
+    id_publicacion_valor = request.POST.get('id_publicacion') # Reemplaza con el valor correcto
+    id_usuario_adoptador_valor = request.session['id']  # Reemplaza con el valor correcto
+    razon_valor = request.POST.get('razon')
+    lugar_valor = request.POST.get('lugar')
+    experiencia_valor = request.POST.get('experiencia')
+    comentario_valor = request.POST.get('comentario')
+
+    # Crear un nuevo objeto Formulario
+    nuevo_formulario = models.Formulario(
+        idPublicacion=models.Publicacion.objects.get(id=id_publicacion_valor),
+        idUsuarioAdoptador=models.Usuario.objects.get(id=id_usuario_adoptador_valor),
+        razon=razon_valor,
+        lugar=lugar_valor,
+        experiencia=experiencia_valor,
+        comentario=comentario_valor
+    )
+
+    # Guardar el nuevo formulario en la base de datos
+    nuevo_formulario.save()
+
+
+    #ciudad_valor = "EjemploCiudad"
+    revision_valor = "Sin revisar"
+    id_formulario_valor = nuevo_formulario.id  # Reemplaza con el valor correcto
+
+    publicacion = get_object_or_404(models.Publicacion, id=id_publicacion_valor)
+
+    # Recuperar la información de ubicación desde la tabla Ubicacion mediante la relación de clave foránea en la Publicacion
+    ubicacion = get_object_or_404(models.Ubicacion, id=publicacion.idUbicacion.id)
+    ciudad = ubicacion.municipio  # Ajusta según tu modelo y relaciones
+
+    # Crear un nuevo objeto Adopcion y guardarlo en la base de datos
+    nueva_adopcion = models.Adopcion(
+        id_publicacion=models.Publicacion.objects.get(id=id_publicacion_valor),
+        ciudad=ciudad,
+        revision=revision_valor,
+        id_formulario=models.Formulario.objects.get(id=id_formulario_valor)
+    )
+    nueva_adopcion.save()
+
+    # Resto de tu lógica de vista
+
+    return render(request,'foro.html')
+
+def verDetallesForm(request,id):
+    formulario = get_object_or_404(models.Formulario, pk=id)
+    # Acceder al usuario asociado al formulario
+    usuario = formulario.idUsuarioAdoptador  # Ajusta el nombre según la relación en tu modelo
+
+    return render(request,'detallesFormulario.html',{'formulario':formulario,'usuario':usuario})
+
+#ADMIN
+def irHomeAdmin(request):
+    return render(request,'index.html')
+
+def irUsuariosAdmin(request):
+    usuarios = models.Usuario.objects.annotate(num_publicaciones=Count('publicacion'))
+    for usuario in usuarios:
+        usuario.fecha_creacion = usuario.fecha_creacion.date()
+    return render(request,'usuariosadmin copy.html',{'usuarios':usuarios})
+
+def irPublicacionesAdmin(request):
+    publicaciones = models.Publicacion.objects.all()
+    return render(request,'publicaciones.html',{'publicaciones':publicaciones})
+
+def irAdopcionesAdmin(request):
+    adopciones = models.Adopcion.objects.select_related('id_publicacion').all()
+    return render(request,'adopciones.html',{'adopciones':adopciones})
+
+
 
 def cerrarSesion(request):
     username = request.session.get('username')

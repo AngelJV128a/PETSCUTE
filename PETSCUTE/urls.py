@@ -35,9 +35,17 @@ urlpatterns = [
     path('olvide_password/',views.irOlvidePassword,name="olvide mi password"),
     path('enviarToken/',views.enviarToken,name="enviar token"),
     path('detallesPost/<int:id>/',views.irDetallesPublicacion,name="detalles publicacion"),
+    path('adopcionForm/<int:id>/',views.irAFormularioAdopcion,name="formulario adopcion"),
+    path('insertarForm/',views.insertarFormulario,name="insertar formulario"),
+    path('detallesForm/<int:id>/',views.verDetallesForm,name="detalles_formulario"),
     path('actualizarPerfil/',views.actualizarPerfil,name="actualizar perfil"),
     path('chatbot/',views.irAChatbot,name="ir chatbot"),
     path('chatbot/ajax/', views.ajax_chat, name='ajax_chat'),
+
+    path('admin_home/',views.irHomeAdmin,name='home admin'),
+    path('admin_usuarios/',views.irUsuariosAdmin,name='usuarios admin'),
+    path('admin_publicaciones/',views.irPublicacionesAdmin,name='publicaciones admin'),
+    path('admin_adopciones/',views.irAdopcionesAdmin,name='adopciones admin'),
 
     path('publicar/salvar/',views.salvar_publicacion,name="salvar publicacion"),
 

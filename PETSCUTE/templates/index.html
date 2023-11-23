@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,22 +14,14 @@
     <input type="checkbox" id="active">
     <label for="active" class="menu-btn"><span></span></label>
     <label for="active" class="close"></label>
-    <div class="wrapper">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="usuariosadmin copy.html">Usuarios</a></li>
-        <li><a href="publicaciones.html">Publicaciones</a></li>
-        <li><a href="adopciones.html">Adopciones</a></li>
-        <li><a href="#">Salir</a></li>
-      </ul>
-    </div>
+    {% include 'reutilizables/footer_admin.html' %}
     <div class="content">
       
       <div class="img-container">
-          <img src="img/Pie Chart - Blank Presentation.png" alt="">
+          <img src="{% static 'img/Pie Chart - Blank Presentation.png' %}" alt="">
       </div>
       <div class="img-container">
-          <img src="img/Pie Chart - Blank Presentation (1).png" alt="">
+          <img src="{% static 'img/Pie Chart - Blank Presentation (1).png' %}" alt="">
       </div>
   </div>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>

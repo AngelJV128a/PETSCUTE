@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +13,10 @@
 </head>
 <body>
     <h1>Formulario de adopcion</h1>
-    <form id="Form-adopcion" name="Form-adopcion">
-        <label for="razon">Razon por la cual desea adoptar: </label><br>
+    <form id="Form-adopcion" name="Form-adopcion" method="post" action="{% url 'insertar formulario' %}">
+        {% csrf_token %}
+        <input type="hidden" name="id_publicacion" value="{{ id_mascota }}">
+        <label for="razon">Razon por la cual desea adoptar:</label><br>
         <textarea id="razon" name="razon" rows="4" cols="50" placeholder="Escriba su razon" maxlength="128"></textarea><br><br>
         <label for="lugar">¿En donde viviria?: </label><br>
         <textarea id="lugar" name="lugar" rows="4" cols="50" placeholder="Describa el lugar" maxlength="128"></textarea><br><br>
@@ -25,7 +28,7 @@
         </select><br><br>
         <label for="comentario">Comente su experiencia de manera breve: </label><br>
         <textarea id="comentario" name="comentario" rows="4" cols="50" placeholder="Escriba su experiencia (maximo 128 caracteres)" maxlength="128"></textarea><br><br>
-        <input type="button" value="Enviar">
+        <input type="submit" value="Enviar">
     </form>
 </body>
 </html>

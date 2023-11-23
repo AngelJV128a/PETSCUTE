@@ -12,7 +12,7 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=45, db_column="nombre")
     apellido = models.CharField(max_length=45, db_column="apellido")
     nickname = models.CharField(max_length=45, db_column="nickname")
-    #fecha_creacion = models.DateTimeField(null=False, db_column="fecha_creacion")
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
     correo = models.CharField(max_length=45, db_column="correo")
     contrasenia = models.BinaryField(max_length=128, db_column="contrasenia")
     foto = models.ImageField(upload_to='fotos_perfil/', db_column="foto")
@@ -67,3 +67,18 @@ class Formulario(models.Model):
     class Meta:
         managed = False
         db_table = 'formularios'
+
+
+class Adopcion(models.Model):
+    id = models.AutoField(primary_key=True, db_column='id')
+    id_publicacion = models.ForeignKey(Publicacion, on_delete=models.CASCADE, db_column='id_publicacion')
+    ciudad = models.CharField(max_length=45, db_column='ciudad')
+    fecha = models.DateField(auto_now_add=True, db_column='fecha')
+    revision = models.CharField(max_length=45, db_column='revision')
+    id_formulario = models.ForeignKey(Formulario, on_delete=models.CASCADE, db_column='id_formulario')
+
+    def __str__(self):
+        return f"Adopcion-{self.id}"
+
+    class Meta:
+        db_table = 'adopciones'

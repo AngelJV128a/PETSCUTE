@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,27 +8,28 @@
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <link rel="stylesheet" href="{% static 'css/style1.css'%}">
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofST/mRvH+6C4Gg1xq4F2bY5q2KRbwD1d" crossorigin="anonymous">
+
 </head>
+    <style>
+        /* Aplica z-index directamente a la clase del ícono de búsqueda */
+        .fas.fa-search {
+            position: relative;
+            z-index: 3; /* Ajusta este valor según sea necesario */
+        }
+    </style>
 <body>
     <input type="checkbox" id="active">
     <label for="active" class="menu-btn"><span></span></label>
     <label for="active" class="close"></label>
-    <div class="wrapper">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="usuariosadmin copy.html">Usuarios</a></li>
-        <li><a href="publicaciones.html">Publicaciones</a></li>
-        <li><a href="adopciones.html">Adopciones</a></li>
-        <li><a href="#">Salir</a></li>
-      </ul>
-    </div>
+    {% include 'reutilizables/footer_admin.html' %}
     <div class="content">
         <main class="table">
             <section class="table__header">
                 <h1>Usuarios</h1>
                 <div class="input-group">
                     <input type="search" placeholder="Search Data...">
-                   <!--Icono de buscar--> <img src="" alt="">
+                   <!--Icono de buscar--><i class="fas fa-search" style="position: absolute; z-index: 2; color: black;"></i>
                 </div>
             </section>
             <section class="table__body">
@@ -43,14 +45,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for usuario in usuarios%}
                         <tr>
-                            <td> 1 </td>
-                            <td> <img src="" alt="">Angel</td>
+                            <td>{{ usuario.id }}</td>
+                            {% if usuario.foto %}
+                            <td> <img src="{{usuario.foto}}" alt="">{{usuario.nombre}}</td>
+                            {% else %}
+                            <td> <img src="" alt="">{{usuario.nombre}}</td>
+                            {% endif %}
                             <td> Guadalajara </td>
-                            <td> 17 Abril, 2022 </td>
-                            <td> <strong> 1 </strong></td>
+                            <td> {{usuario.fecha_creacion|date:"Y-m-d"}} </td>
+                            <td> <strong> {{usuario.num_publicaciones}} </strong></td>
                             <td> <button class="boton-rojo">Eliminar</button> </td>
                         </tr>
+                        {% endfor %}
+                        <!--
                         <tr>
                             <td> 2 </td>
                             <td><img src="" alt=""> Karla </td>
@@ -67,6 +76,7 @@
                             <td> <strong>2</strong> </td>
                             <td> <button class="boton-rojo">Eliminar</button> </td>
                         </tr>
+                        -->
                     </tbody>
                 </table>
             </section>

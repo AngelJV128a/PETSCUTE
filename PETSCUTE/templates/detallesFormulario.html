@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del formulario</title>
+</head>
+<body>
+<div>
+    USUARIO <br>
+    <img src="{{usuario.foto}}" alt="Foto"><br>
+    {{usuario.nombre}}<br><br>
+    Razon por la cual desea adoptar:
+    {{formulario.razon}}<br><br>
+    ¿En donde viviria?:
+    {{formulario.lugar}}<br><br>
+    ¿Ya ha tenido experiencia con este tipo de mascotas antes?:
+    {{formulario.experiencia}}<br><br>
+    Comente su experiencia de manera breve:
+    {{formulario.comentario}}<br><br>
+</div>
+</body>
+</html>
