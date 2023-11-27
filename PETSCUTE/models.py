@@ -68,7 +68,7 @@ class Formulario(models.Model):
         managed = False
         db_table = 'formularios'
 
-<<<<<<< HEAD
+
 
 class Adopcion(models.Model):
     id = models.AutoField(primary_key=True, db_column='id')
@@ -83,7 +83,7 @@ class Adopcion(models.Model):
 
     class Meta:
         db_table = 'adopciones'
-=======
+
 class Adopcion(models.Model):
     id= models.AutoField(primary_key=True, db_column="id")
     idPublicacion = models.ForeignKey(Publicacion, db_column="id_publicacion", on_delete=models.CASCADE)
@@ -94,4 +94,4 @@ class Adopcion(models.Model):
     class Meta:
         managed = False
         db_table = 'adopciones'
->>>>>>> b065699c3caddfc07110780c2c7178a9f365cb04
+

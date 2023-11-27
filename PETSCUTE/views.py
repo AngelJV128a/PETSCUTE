@@ -228,7 +228,7 @@ def irPublicacionesAdmin(request):
     return render(request,'publicaciones.html',{'publicaciones':publicaciones})
 
 def irAdopcionesAdmin(request):
-    adopciones = models.Adopcion.objects.select_related('id_publicacion').all()
+    adopciones = models.Adopcion.objects.select_related('idPublicacion').all()
     return render(request,'adopciones.html',{'adopciones':adopciones})
 
 

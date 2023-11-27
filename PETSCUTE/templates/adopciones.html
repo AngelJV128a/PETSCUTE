@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
-    <input type="checkbox" id="active">
-    <label for="active" class="menu-btn"><span></span></label>
-    <label for="active" class="close"></label>
-    {% include 'reutilizables/footer_admin.html' %}
-    <div class="content">
+<input type="checkbox" id="active">
+<label for="active" class="menu-btn"><span></span></label>
+<label for="active" class="close"></label>
+{% include 'reutilizables/footer_admin.html' %}
+<div class="content">
     <main class="table">
         <section class="table__header">
             <h1>Adopciones</h1>
@@ -27,34 +27,44 @@
         <section class="table__body">
             <table>
                 <thead>
-                    <tr>
-                        <th> Id <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Publicacion <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Municipio <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Fecha <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Revision<span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Ver documentos</th>
-                        <th> Eliminar</th>
-                    </tr>
+                <tr>
+                    <th> Id <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Publicacion <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Municipio <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Fecha <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Revision<span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Ver documentos</th>
+                    <th> Eliminar</th>
+                </tr>
                 </thead>
                 <tbody>
                 {% for adopcion in adopciones %}
-                    <tr>
-                        <td> {{adopcion.id}}</td>
-                        <td><img src="{{adopcion.id_publicacion.foto}}" alt=""> {{adopcion.id_publicacion.nombreMascota}} </td>
-                        <td> {{adopcion.ciudad}} </td>
-                        <td> {{adopcion.fecha}} </td>
-                        <td>
-                            <p class="">Sin revisar</p>
-                        </td>
-                        <td> <button class="boton-azul" onclick="window.location.href='{% url 'detalles_formulario' id=adopcion.id_formulario.id %}'">Ver</button> </td>
-                        <td> <button class="boton-rojo">Eliminar</button> </td>
-                    </tr>
+                <tr>
+                    <td> {{adopcion.id}}</td>
+                    <td><img src="{{adopcion.id_publicacion.foto}}" alt=""> {{adopcion.id_publicacion.nombreMascota}}
+                    </td>
+                    <td> {{adopcion.ciudad}}</td>
+                    <td> {{adopcion.fecha}}</td>
+                    <td>
+                        <p class="">Sin revisar</p>
+                    </td>
+                    <td>
+                        <button class="boton-azul"
+                                onclick="window.location.href='{% url 'detalles_formulario' id=adopcion.idFormulario.id %}'">
+                            ver
+                        </button>
+
+                    </td>
+                    <td>
+                        <button class="boton-rojo">Eliminar</button>
+                    </td>
+                </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </section>
     </main>
+</div>
 </body>
 <script src="script.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
