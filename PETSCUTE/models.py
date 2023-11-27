@@ -90,6 +90,7 @@ class Adopcion(models.Model):
     idFormulario = models.ForeignKey(Formulario, db_column="id_formulario", on_delete=models.CASCADE)
     ciudad = models.CharField(max_length=45, db_column="ciudad")
     revision = models.CharField(max_length=45, db_column="revision")
+    fecha = models.DateField(auto_now_add=True, db_column='fecha')
 
     class Meta:
         managed = False
