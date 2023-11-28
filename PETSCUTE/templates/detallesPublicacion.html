@@ -58,8 +58,11 @@
             <p class="p1">{{mascota.edadMascota}} años</p>
 
             <label>Sexo: </label>
-            <p class="p1">{{mascota.sexoMascota}}</p>
-
+            {% if mascota.sexoMascota == 'M' %}
+            <p class="p1">Macho</p>
+            {% else %}
+            <p class="p1">Hembra</p>
+            {% endif %}
             <label>Fecha de publicacion</label>
             <p class="p1">{{mascota.fechaPublicacion}}</p>
 
@@ -67,11 +70,11 @@
             <p class="p1">{{mascota.direccion}}</p>
 
             <label>Ciudad </label>
-            <p class="p1">[ciudad]</p>
+            <p class="p1">{{mascota.idUbicacion.municipio}}, {{mascota.idUbicacion.estado}}</p>
 
             <!-- Detalles del usuario que lo publicó -->
             <hr> <!-- Una línea de separación -->
-            <p class="p1">Publicado por: [nombre del usuario]</p>
+            <p class="p1">Publicado por: {{mascota.idUsuario.correo}}</p>
 
             <!-- Botón de Adoptar más estrecho -->
             <button class="boton" onclick="window.location.href='{% url 'formulario adopcion' id=mascota.id%}'">Adoptar</button>

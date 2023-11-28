@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-   <link rel="stylesheet" href="{% static 'css/estilosm2.css' %}"><!--/PETSCUTE/static/css/estilosm2.css-->
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/estilosm2.css' %}"><!--/PETSCUTE/static/css/estilosm2.css-->
     <link rel="icon" href="{% static 'img/lg.png' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'css/estilos_footer.css'%}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,77 +11,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-     <!-- Enlace a Font Awesome para el ícono -->
+    <!-- Enlace a Font Awesome para el ícono -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <title>Mapa de Jalisco con Organizaciones</title>
+    <title>Mapa de Jalisco con Organizaciones</title>
 
-  <!-- Incluye la biblioteca Leaflet y los estilos del mapa -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Incluye la biblioteca Leaflet y los estilos del mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
     <link rel="stylesheet" href="{% static 'css/boton.css'%}">
 
-  <!-- Estilos CSS personalizados para el contenedor del mapa -->
-  <style>
-    /* Estilos CSS personalizados para el contenedor del mapa */
-    #map {
-      display: flex;
-      background-color: antiquewhite;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 100px; /* Añade un margen superior igual a la altura de la barra de navegación */
-      padding-bottom: 60px; /* Añade un margen inferior igual a la altura del pie de página */
+    <!-- Estilos CSS personalizados para el contenedor del mapa -->
+    <style>
+        /* Estilos CSS personalizados para el contenedor del mapa */
+        #map {
+            display: flex;
+            background-color: antiquewhite;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px; /* Añade un margen superior igual a la altura de la barra de navegación */
+            padding-bottom: 60px; /* Añade un margen inferior igual a la altura del pie de página */
             width: 90%;
-      height: 90%;
-    }
-    
+            height: 90%;
+        }
+
         /* Estilos para la barra de navegación especiales para esta sección */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      display: flex;
-      padding: 15px;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #fcfdff;
-      box-shadow: 0px 3px 5px 0px rgba(99, 98, 98, 0.75);
-      z-index: 99;
-      transition: all .4s ease;
-      margin-top: 0; /* Elimina el margen superior de la barra de navegación */
-    }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            padding: 15px;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fcfdff;
+            box-shadow: 0px 3px 5px 0px rgba(99, 98, 98, 0.75);
+            z-index: 99;
+            transition: all .4s ease;
+            margin-top: 0; /* Elimina el margen superior de la barra de navegación */
+        }
 
-    
 
-    .container {
-    display: flex;
+        .container {
+            display: flex;
 
-    flex-direction: column;
-    align-items: center;
-    padding-top: 100px; /* Añade un margen superior igual a la altura de la barra de navegación */
-    padding-bottom: 60px; /* Añade un margen inferior igual a la altura del pie de página */
-    z-index: -1; /* Ajusta este valor según sea necesario */
-    height:700px;
-    width: 50vw; /* 50% del ancho de la ventana */
-      border-radius: 20px; /* Añade bordes redondeados */
-    overflow: hidden; /* Asegura que el contenido no se desborde del contenedor redondeado */
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    }
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px; /* Añade un margen superior igual a la altura de la barra de navegación */
+            padding-bottom: 60px; /* Añade un margen inferior igual a la altura del pie de página */
+            z-index: -1; /* Ajusta este valor según sea necesario */
+            height: 700px;
+            width: 50vw; /* 50% del ancho de la ventana */
+            border-radius: 20px; /* Añade bordes redondeados */
+            overflow: hidden; /* Asegura que el contenido no se desborde del contenedor redondeado */
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
 
-.custom-marker {
-    background-color: #ff0000; /* Ejemplo de color de fondo */
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    text-align: center;
-    line-height: 32px;
-    color: #ffffff; /* Color del texto */
-    font-weight: bold;
+        .custom-marker {
+            background-color: #ff0000; /* Ejemplo de color de fondo */
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            color: #ffffff; /* Color del texto */
+            font-weight: bold;
 
-}
-         .modal-container {
+        }
+
+        .modal-container {
             display: none;
             position: fixed;
             top: 0;
@@ -131,116 +131,118 @@
             border: none;
             cursor: pointer;
         }
-  </style>
+    </style>
 </head>
 <body>
- {% include 'reutilizables/nav_bar.html' %}
+{% include 'reutilizables/nav_bar.html' %}
 
- <main>
-  <div class="container">
-            <h1><center>Mapa de asociaciones en Jalisco</center></h1>
-            <div id="map"></div>
-            <br>
-            <br>
-            <button onclick="openModal()">Ingresar Asociación</button>
+<main>
+    <div class="container">
+        <h1>
+            <center>Mapa de asociaciones en Jalisco</center>
+        </h1>
+        <div id="map"></div>
+        <br>
+        <br>
+        <button onclick="openModal()">Ingresar Asociación</button>
 
-            <div id="myCustomModal" class="modal-container">
-                <div class="modal-content-container">
-                    <span class="modal-close" onclick="closeModal()">&times;</span>
-        <h2>Formulario de Asociación</h2>
-        <form>
-            <label for="nombre">Nombre de la organización:</label>
-            <input type="text" id="nombre" name="nombre" required>
+        <div id="myCustomModal" class="modal-container">
+            <div class="modal-content-container">
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+                <h2>Formulario de Asociación</h2>
+                <form>
+                    <label for="nombre">Nombre de la organización:</label>
+                    <input type="text" id="nombre" name="nombre" required>
 
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" name="telefono" required>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required>
 
-            <label for="correo">Correo electrónico:</label>
-            <input type="email" id="correo" name="correo" required>
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" id="correo" name="correo" required>
 
-            <label for="foto">Foto:</label>
-            <input type="file" id="foto" name="foto" accept="image/*">
+                    <label for="foto">Foto:</label>
+                    <input type="file" id="foto" name="foto" accept="image/*">
 
-            <label for="ubicacion">Ubicación:</label>
-            <input type="text" id="ubicacion" name="ubicacion" required>
+                    <label for="ubicacion">Ubicación:</label>
+                    <input type="text" id="ubicacion" name="ubicacion" required>
 
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
-</div>
-   </main>
-  {% include 'reutilizables/footer.html' %}
-  <script>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+</main>
+{% include 'reutilizables/footer.html' %}
+<script>
     var map = L.map('map').setView([20.672, -103.387], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
     // Definición de organizaciones con nombre, dirección y enlace a Facebook
     var organizaciones = [
-      {
-        nombre: 'Organización 1',
-        direccion: '123 Calle Ejemplo, Ciudad',
-        latitud: 20.681,
-        longitud: -103.350,
-        facebook: 'https://www.facebook.com/organizacion1'
-      },
-      {
-        nombre: 'Organización 2',
-        direccion: '456 Avenida Ejemplo, Pueblo',
-        latitud: 20.652,
-        longitud: -103.409,
-        facebook: 'https://www.facebook.com/organizacion2'
-      },
-      {
-        nombre: 'Organización 3',
-        direccion: '789 Calle Principal, Villa',
-        latitud: 20.727,
-        longitud: -103.389,
-        facebook: 'https://www.facebook.com/organizacion3'
-      }
+        {
+            nombre: 'Organización 1',
+            direccion: '123 Calle Ejemplo, Ciudad',
+            latitud: 20.681,
+            longitud: -103.350,
+            facebook: 'https://www.facebook.com/organizacion1'
+        },
+        {
+            nombre: 'Organización 2',
+            direccion: '456 Avenida Ejemplo, Pueblo',
+            latitud: 20.652,
+            longitud: -103.409,
+            facebook: 'https://www.facebook.com/organizacion2'
+        },
+        {
+            nombre: 'Organización 3',
+            direccion: '789 Calle Principal, Villa',
+            latitud: 20.727,
+            longitud: -103.389,
+            facebook: 'https://www.facebook.com/organizacion3'
+        }
     ];
 
     // Agrega marcadores estáticos para organizaciones
-    organizaciones.forEach(function(org) {
-      var marker = L.marker([org.latitud, org.longitud]).addTo(map);
+    organizaciones.forEach(function (org) {
+        var marker = L.marker([org.latitud, org.longitud]).addTo(map);
 
 
 // Obtener el contenedor del mapa
-var mapContainer = map.getContainer();
+        var mapContainer = map.getContainer();
 
 // Aplicar estilos al contenedor del mapa
-mapContainer.style.display = 'flex';
-mapContainer.style.backgroundColor = 'antiquewhite';
-mapContainer.style.flexDirection = 'column';
-mapContainer.style.alignItems = 'center';
-mapContainer.style.paddingTop = '100px';
-mapContainer.style.paddingBottom = '60px';
-mapContainer.style.zIndex = '1'; // Ajusta este valor según sea necesario
-      // Crea una ventana emergente con información de la organización
-      marker.bindPopup(
-        '<strong>' + org.nombre + '</strong><br>' +
-        'Dirección: ' + org.direccion + '<br>' +
-        '<a href="' + org.facebook + '" target="_blank">Página de Facebook</a>'
-      );
+        mapContainer.style.display = 'flex';
+        mapContainer.style.backgroundColor = 'antiquewhite';
+        mapContainer.style.flexDirection = 'column';
+        mapContainer.style.alignItems = 'center';
+        mapContainer.style.paddingTop = '100px';
+        mapContainer.style.paddingBottom = '60px';
+        mapContainer.style.zIndex = '1'; // Ajusta este valor según sea necesario
+        // Crea una ventana emergente con información de la organización
+        marker.bindPopup(
+            '<strong>' + org.nombre + '</strong><br>' +
+            'Dirección: ' + org.direccion + '<br>' +
+            '<a href="' + org.facebook + '" target="_blank">Página de Facebook</a>'
+        );
     });
-  </script>
+</script>
 <script>
-        function openModal() {
-            document.getElementById('myCustomModal').style.display = 'flex';
-        }
+    function openModal() {
+        document.getElementById('myCustomModal').style.display = 'flex';
+    }
 
-        function closeModal() {
-            document.getElementById('myCustomModal').style.display = 'none';
-        }
+    function closeModal() {
+        document.getElementById('myCustomModal').style.display = 'none';
+    }
 
-        window.onclick = function(event) {
-            var modal = document.getElementById('myCustomModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
+    window.onclick = function (event) {
+        var modal = document.getElementById('myCustomModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
         }
+    }
 </script>
 
 

@@ -153,6 +153,7 @@ def irAChatbot(request):
 def irDetallesPublicacion(request,id):
     try:
         resultado = models.Publicacion.objects.get(id=id)
+        resultado.fechaPublicacion=resultado.fechaPublicacion.date()
     except models.Publicacion.DoesNotExist:
         resultado = None
     return render(request,'detallesPublicacion.html',{'mascota': resultado})

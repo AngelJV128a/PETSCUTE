@@ -46,7 +46,7 @@ class Publicacion(models.Model):
     nombreMascota = models.CharField(max_length=45, db_column="nombre_mascota")
     edadMascota = models.CharField(max_length=10, db_column="edad_mascota")
     sexoMascota = models.CharField(max_length=1, db_column="sexo")
-    fechaPublicacion = models.DateField(auto_now_add=True,db_column="fecha_publicacion")
+    fechaPublicacion = models.DateTimeField(auto_now_add=True,db_column="fecha_publicacion")
     tamanioMascota = models.CharField(max_length=7, db_column="tamanio_mascota")
     direccion = models.CharField(max_length=45, db_column="direccion")
     foto = models.ImageField(upload_to='fotos_mascotas/', db_column="foto")
