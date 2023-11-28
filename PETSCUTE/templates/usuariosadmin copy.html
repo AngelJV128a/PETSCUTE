@@ -50,7 +50,7 @@
                             {% if usuario.foto %}
                             <td> <img src="{{usuario.foto}}" alt="">{{usuario.nombre}}</td>
                             {% else %}
-                            <td> <img src="" alt="">{{usuario.nombre}}</td>
+                            <td> <img src="{% static 'img/image.jpg' %}" alt="">{{usuario.nombre}}</td>
                             {% endif %}
                             <td> Guadalajara </td>
                             <td> {{usuario.fecha_creacion|date:"Y-m-d"}} </td>

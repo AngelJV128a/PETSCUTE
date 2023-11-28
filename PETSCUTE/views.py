@@ -73,7 +73,7 @@ def procesar(request):
                 request.session['username'] = correo
                 request.session['password'] = password_ingresada  # No es una buena práctica guardar la contraseña en la sesión, incluso si está en texto plano
                 request.session['id'] = usuario.id
-                return render(request, 'menu2.html')
+                return redirect( 'ir inicio')
             else:
                 print("Usuario no admitido")
                 contexto = {'Invalido': False,
@@ -121,14 +121,15 @@ def irAForo(request):
 def busquedaPersonalizada(request):
     if request.method == 'POST':
         filtro_seleccionado = request.POST.get('filtro', 'all')
-        print(filtro_seleccionado)
         paginator = None  # Define paginator antes de los bloques if/elif
     # Lógica de filtrado basada en el valor de "filtro_seleccionado"
-        if filtro_seleccionado == 'all':
+        if filtro_seleccionado == 'All':
             todos_los_registros = models.Publicacion.objects.all()
             paginator = Paginator(todos_los_registros, 18)
         elif filtro_seleccionado in ['Perro', 'Gato', 'Pajaro', 'Cuyo']:
+            print(filtro_seleccionado)
             especie_id = models.Animal.objects.get(nombre=filtro_seleccionado).id
+            print(especie_id)
             registros_por_especie = models.Publicacion.objects.filter(idAnimal=especie_id).order_by('id')
             paginator = Paginator(registros_por_especie, 18)
         elif filtro_seleccionado in ['Chico', 'Grande']:
@@ -148,6 +149,8 @@ def irAPerfil(request):
 def irAAsociaciones(request):
     return render(request,'organizaciones.html')
 def irAInicio(request):
+    if request.session['username']=="admin@petscue.com":
+        return redirect('home admin')
     return render(request,'menu2.html')
 
 def irOlvidePassword(request):
