@@ -96,7 +96,7 @@ h1 {
 
 .image-section {
     width: 50%; /* Adjust the width as needed */
-	background-color: rgba(245, 245, 220, 0.413);
+	background-color: rgba(255, 255, 255, 0.413);
 	display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
