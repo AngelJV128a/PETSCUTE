@@ -302,7 +302,10 @@ def enviarToken(request):
 
 def salvar_publicacion(request):
     logger.info("salvar_publicacion ha sido llamada")
-    if request.method == 'POST'  and 'foto' in request.FILES:
+    print("entro 1")
+    print(request.FILES['foto'])
+    if request.method == 'POST' and 'foto' in request.FILES:
+        print("entro 2")
         nombre_mascota = request.POST.get('nombre_mascota')
         tamanio = request.POST.get('tamanio')
         edad = request.POST.get('edad')
@@ -335,7 +338,7 @@ def salvar_publicacion(request):
             tamanioMascota=tamanio,
         )
         publicacion.save()
-
+        print("termino")
         return redirect('ir foro')
 
     return render(request, 'publicar.html')
