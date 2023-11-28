@@ -166,7 +166,7 @@
                     <label for="ubicacion">Ubicación:</label>
                     <input type="text" id="ubicacion" name="ubicacion" required>
 
-                    <button type="submit">Enviar</button>
+                    <button type="submit" onclick="agregarUbicacion();closeModal();return false;">Enviar</button>
                 </form>
             </div>
         </div>
@@ -227,6 +227,28 @@
             '<a href="' + org.facebook + '" target="_blank">Página de Facebook</a>'
         );
     });
+
+    function agregarUbicacion() {
+   // Aquí puedes modificar la lógica para obtener la latitud y longitud de la URL de Google Maps
+    var urlGoogleMaps =$('#ubicacion').val();
+    // Extraer latitud y longitud de la URL
+    var regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
+    var matches = urlGoogleMaps.match(regex);
+
+    if (matches && matches.length === 3) {
+        var nuevaUbicacion = {
+            latitud: parseFloat(matches[1]),
+            longitud: parseFloat(matches[2]),
+            nombre: 'Nueva Ubicación'
+        };
+
+        // Agrega el nuevo marcador al mapa
+        var nuevoMarker = L.marker([nuevaUbicacion.latitud, nuevaUbicacion.longitud]).addTo(map);
+        nuevoMarker.bindPopup('<b>' + nuevaUbicacion.nombre + '</b>').openPopup();
+    } else {
+        alert('No se pudieron extraer las coordenadas de la URL de Google Maps.');
+    }
+}
 </script>
 <script>
     function openModal() {
@@ -242,6 +264,7 @@
         if (event.target === modal) {
             modal.style.display = 'none';
         }
+        $('#ubicacion').val("");
     }
 </script>
 
