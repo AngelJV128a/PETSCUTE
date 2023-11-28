@@ -41,8 +41,8 @@
                 {% for publicacion in publicaciones %}
                     <tr>
                         <td> {{publicacion.id}} </td>
-                        <td> <img src="{{publicacion.foto}}" alt="">Tilin</td>
-                        <td> {{publicacion.direccion}} </td>
+                        <td> <img src="{{publicacion.foto}}" alt="">{{publicacion.nombreMascota}}</td>
+                        <td> {{publicacion.idUbicacion.municipio}} </td>
                         <td> {{publicacion.fechaPublicacion}} </td>
                         <td>
                             <p class="status aceptada">Aceptada</p>
