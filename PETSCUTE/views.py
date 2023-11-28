@@ -196,10 +196,10 @@ def insertarFormulario(request):
 
     # Crear un nuevo objeto Adopcion y guardarlo en la base de datos
     nueva_adopcion = models.Adopcion(
-        id_publicacion=models.Publicacion.objects.get(id=id_publicacion_valor),
+        idPublicacion=models.Publicacion.objects.get(id=id_publicacion_valor),
         ciudad=ciudad,
         revision=revision_valor,
-        id_formulario=models.Formulario.objects.get(id=id_formulario_valor)
+        idFormulario=models.Formulario.objects.get(id=id_formulario_valor)
     )
     nueva_adopcion.save()
 
