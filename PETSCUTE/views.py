@@ -35,10 +35,19 @@ posts = nltk.corpus.nps_chat.xml_posts()
 # Crear pares de respuestas para el chatbot
 pairs = [
     (r'Hola', ['Mi nombre es PETBOT, dime en que te puedo ayudar']),
-    (r'Necesito (.*)', ['¿Por qué necesitas {0}?', '¿Cómo usarías {0}?']),
-    (r'(.*) ayuda (.*)', ['Puedo ayudarte con {1}.']),
+    (r'Necesito (.*)', ['¿Por qué necesitas %1?', '¿Cómo usarías %1?']),
+    (r'(.*) ayuda (.*)', ['Puedo ayudarte con %1.']),
     (r'(.*) tu nombre?', ['Soy un chatbot.']),
     (r'(.*) (ubicación|ciudad) ?', ['Soy un asistente virtual. No tengo una ubicación física.']),
+    (r'(.*) una publicacion?', ['Para hacer una publicacion, debes ir a la seccion de Publicar y seguir los pasos']),
+    (r'Que es el foro?', ['El Foro es una seccion donde puedes ver a los animales en adopcion']),
+    (r'Que son las asociaciones?', ['Las asociaciones son organizaciones que se encargan de ayudar a mas personas a encontrar animales en adopcion. Para ver alguna de ellas, solo ve a la seccion de Asociaciones']),
+    (r'Que es el perfil?', ['En el Perfil puedes encontrar tu informacion personal, asi como la opcion de editarla en caso necesario']),
+    (r'Como puedo adoptar?', ['Para adoptar una mascota, puedes ir a la seccion de Foro y elegir la que te guste. Despues, dale al boton de Adoptar para rellenar un formulario y seguir las instrucciones siguientes']),
+    (r'Lo siento', ['No te preocupes, todos somos humanos, ...bueno yo no, yo soy un chatbot', 'Esta bien, te perdono', 'No te perdono. Ntc, si te perdono']),
+    (r'(Buenos dias|Buenas tardes|Buenas noches)', [' a ti tambien']),
+    (r'Para que es el switch que esta en la esquina?', ['Sirve para alternar entre el modo oscuro y el modo claro']),
+    (r'Me quieres?', ['Perdon, solo te veo como usuario'])
 ]
 
 # Crear el chatbot con los pares de respuestas
