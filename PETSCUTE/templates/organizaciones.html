@@ -160,8 +160,8 @@
                     <label for="correo">Correo electrónico:</label>
                     <input type="email" id="correo" name="correo" required>
 
-                    <label for="foto">Foto:</label>
-                    <input type="file" id="foto" name="foto" accept="image/*">
+                    <label for="foto">Pagina:</label>
+                    <input type="text" id="foto" name="foto" >
 
                     <label for="ubicacion">Ubicación:</label>
                     <input type="text" id="ubicacion" name="ubicacion" required>
@@ -170,6 +170,7 @@
                 </form>
             </div>
         </div>
+    </div>
 </main>
 {% include 'reutilizables/footer.html' %}
 <script>
@@ -239,12 +240,14 @@
         var nuevaUbicacion = {
             latitud: parseFloat(matches[1]),
             longitud: parseFloat(matches[2]),
-            nombre: 'Nueva Ubicación'
+            nombre: $('#nombre').val(),
+            facebook:$('#foto').val(),
         };
 
         // Agrega el nuevo marcador al mapa
         var nuevoMarker = L.marker([nuevaUbicacion.latitud, nuevaUbicacion.longitud]).addTo(map);
-        nuevoMarker.bindPopup('<b>' + nuevaUbicacion.nombre + '</b>').openPopup();
+        nuevoMarker.bindPopup('<b>' + nuevaUbicacion.nombre + '</b>'+'<br>'+
+        '<a href="' + nuevaUbicacion.facebook + '" target="_blank">Página de Facebook</a>').openPopup();
     } else {
         alert('No se pudieron extraer las coordenadas de la URL de Google Maps.');
     }
@@ -257,6 +260,11 @@
 
     function closeModal() {
         document.getElementById('myCustomModal').style.display = 'none';
+        $('#nombre').val("");
+        $('#telefono').val("");
+        $('#correo').val("");
+        $('#foto').val("");
+        $('#ubicacion').val("");
     }
 
     window.onclick = function (event) {
@@ -264,7 +272,8 @@
         if (event.target === modal) {
             modal.style.display = 'none';
         }
-        $('#ubicacion').val("");
+
+
     }
 </script>
 
