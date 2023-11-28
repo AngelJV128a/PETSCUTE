@@ -1,0 +1,61 @@
+/* Estilos para la tarjeta */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    width: 90%;
+    text-align: left;
+}
+
+/* Ajustes de otros estilos que ya tienes */
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px; /* Centrar la imagen */
+    display: block; /* Hacer que la imagen sea un elemento de bloque para centrarla */
+}
+
+h2 {
+    color: rgb(29, 29, 45); /* Color azul para el nombre */
+    text-align: center; /* Centrar el nombre */
+    margin-bottom: 20px; /* Espacio al final del nombre */
+}
+
+/* Estilos para el texto */
+p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Estilo para las etiquetas de usuario y formulario */
+strong {
+    font-weight: bold;
+}
+
+/* Ajuste de los estilos de los campos de formulario */
+input[type="text"],
+textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}

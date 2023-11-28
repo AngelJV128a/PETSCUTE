@@ -54,11 +54,11 @@
 }
 
 .card:nth-of-type(even) .img__back{
-    background-image: url(../img/bg1.jpg);
+    background-image: url(../img/bg3.jpg);
 }
 
 .card:nth-of-type(odd) .img__back{
-    background-image: url(../img/bg2.jpg);
+    background-image: url(../img/bg3.jpg);
 }
 
 
