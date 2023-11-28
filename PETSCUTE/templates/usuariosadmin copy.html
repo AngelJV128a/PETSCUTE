@@ -56,7 +56,7 @@
                             <td> Guadalajara </td>
                             <td> {{usuario.fecha_creacion|date:"Y-m-d"}} </td>
                             <td> <strong> {{usuario.num_publicaciones}} </strong></td>
-                            <td> <button class="boton-rojo">Eliminar</button> </td>
+                            <td> <a href="delete_user/{{usuario.id}}"><button class="boton-rojo">Eliminar</button></a> </td>
                         </tr>
                         {% endfor %}
                         <!--

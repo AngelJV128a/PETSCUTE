@@ -42,6 +42,10 @@ urlpatterns = [
     path('chatbot/',views.irAChatbot,name="ir chatbot"),
     path('chatbot/ajax/', views.ajax_chat, name='ajax_chat'),
 
+    path('admin_usuarios/delete_user/<int:id>', views.borrarUsuario,name='usuario borrar'),
+    path('admin_publicaciones/delete_post/<int:id>', views.borrarPublicacion,name='publicacion borrar'),
+    path('admin_adopciones/delete_adoption/<int:id>', views.borrarAdopcion,name='adopcion borrar'),
+
     path('admin_home/',views.irHomeAdmin,name='home admin'),
     path('admin_usuarios/',views.irUsuariosAdmin,name='usuarios admin'),
     path('admin_publicaciones/',views.irPublicacionesAdmin,name='publicaciones admin'),

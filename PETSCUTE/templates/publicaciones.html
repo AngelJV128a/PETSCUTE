@@ -48,7 +48,7 @@
                             <p class="status aceptada">Aceptada</p>
                         </td>
                         <td> <button class="boton-azul" onclick="window.location.href='{% url 'detalles publicacion' publicacion.id %}'">Ver</button> </td>
-                        <td> <button class="boton-rojo">Eliminar</button> </td>
+                        <td> <a href="delete_post/{{publicacion.id}}"><button class="boton-rojo">Eliminar</button></a> </td>
                     </tr>
                 {% endfor %}
                 </tbody>

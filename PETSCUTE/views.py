@@ -224,6 +224,21 @@ def irUsuariosAdmin(request):
         usuario.fecha_creacion = usuario.fecha_creacion.date()
     return render(request,'usuariosadmin copy.html',{'usuarios':usuarios})
 
+def borrarUsuario(request, id):
+    usuario_borrar = models.Usuario.objects.get(id=id)
+    usuario_borrar.delete()
+    return redirect("/admin_usuarios/")
+
+def borrarPublicacion(request, id):
+    publicacion_borrar = models.Publicacion.objects.get(id=id)
+    publicacion_borrar.delete()
+    return redirect("/admin_publicaciones/")
+
+def borrarAdopcion(request, id):
+    adopcion_borrar = models.Adopcion.objects.get(id=id)
+    adopcion_borrar.delete()
+    return redirect("/admin_adopciones/")
+
 def irPublicacionesAdmin(request):
     publicaciones = models.Publicacion.objects.all()
     return render(request,'publicaciones.html',{'publicaciones':publicaciones})
