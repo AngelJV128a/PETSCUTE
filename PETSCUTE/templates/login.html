@@ -61,13 +61,6 @@
     </div>
     <div class="form-information">
         <div class="form-information-childs">
-            <h2>Inicia Sesión</h2>
-            <div class="icons">
-                <i class='bx bxl-google'></i>
-                <i class='bx bxl-github' ></i>
-                <i class='bx bxl-linkedin' ></i>
-            </div>
-            <p>Iniciar sesión con una cuenta</p>
             <form class="form" method="POST" action="{% url 'Procesar datos' %}">
                 {% csrf_token %}
                 <label >
