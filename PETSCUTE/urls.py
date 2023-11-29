@@ -28,6 +28,7 @@ urlpatterns = [
     path('registrar/',views.registrar,name="registrar usuario"),
     path('foro/',views.irAForo,name="ir foro"),
     path('buscar/',views.busquedaPersonalizada,name="busqueda personalizada"),
+    path('buscarPorMunicipio/',views.busquedaMunicipio,name="busqueda_municipio"),
     path('perfil/',views.irAPerfil,name="ir perfil"),
     path('publicar/',views.irAPublicar,name="ir publicar"),
     path('asociaciones/',views.irAAsociaciones,name="ir asociaciones"),

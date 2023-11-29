@@ -50,6 +50,8 @@ class Publicacion(models.Model):
     tamanioMascota = models.CharField(max_length=7, db_column="tamanio_mascota")
     direccion = models.CharField(max_length=45, db_column="direccion")
     foto = models.ImageField(upload_to='fotos_mascotas/', db_column="foto")
+    foto2=models.ImageField(upload_to='fotos_mascotas/',db_column="foto2")
+    foto3 = models.ImageField(upload_to='fotos_mascotas/', db_column="foto3")
 
     class Meta:
         managed = False

@@ -141,6 +141,19 @@ def busquedaPersonalizada(request):
     print(publicaciones)
     return render(request, 'foro.html', {'publicaciones': publicaciones})
 
+def busquedaMunicipio(request):
+    # Obtener el municipio del formulario
+    municipio = request.POST.get('busqueda')
+
+    # Filtrar publicaciones por municipio
+    publicaciones = models.Publicacion.objects.filter(idUbicacion__municipio=municipio)
+    # Hacer algo con las publicaciones, por ejemplo, pasarlas a la plantilla
+    paginator = Paginator(publicaciones, 18)
+
+    # Puedes pasar las publicaciones a tu plantilla o realizar otras acciones
+    return render(request, 'foro.html', {'publicaciones': paginator.page(1)})
+
+
 def irAPerfil(request):
     id=request.session['id']
     usuario = get_object_or_404(models.Usuario, id=id)
@@ -319,10 +332,21 @@ def salvar_publicacion(request):
         municipio = request.POST.get('municipio')
         comentario = request.POST.get('comentario')
 
-        foto = request.FILES['foto']
+        fotos = request.FILES.getlist('foto')
+
         fs = FileSystemStorage()
-        filename = fs.save('fotos_mascotas/' + foto.name, foto)
+        filename = fs.save('fotos_mascotas/' + fotos[0].name, fotos[0])
         uploaded_file_url = fs.url(filename)
+
+        if len(fotos)>=2:
+            fs = FileSystemStorage()
+            filename = fs.save('fotos_mascotas/' + fotos[1].name, fotos[1])
+            uploaded_file_url2 = fs.url(filename)
+
+        if len(fotos)>=3:
+            fs = FileSystemStorage()
+            filename = fs.save('fotos_mascotas/' + fotos[2].name, fotos[2])
+            uploaded_file_url3 = fs.url(filename)
 
         ubicacion=models.Ubicacion(
             estado=estado,
@@ -332,6 +356,8 @@ def salvar_publicacion(request):
 
         publicacion = models.Publicacion(
             foto=uploaded_file_url,
+            foto2=uploaded_file_url2,
+            foto3=uploaded_file_url3,
             idUsuario_id=request.session['id'],
             idAnimal_id=tipo,
             idUbicacion_id=ubicacion.id,

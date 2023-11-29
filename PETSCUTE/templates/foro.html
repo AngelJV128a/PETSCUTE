@@ -84,10 +84,13 @@
     <a href="{% url 'ir publicar' %}" class="btn btn-success"><i class="fas fa-pencil-alt mr-2"></i>Publicar</a>
 </div>-->
 <div class = "wrapper">
+    <form action="{% url 'busqueda_municipio' %}" method="post" id="formBuscar">
+            {% csrf_token %}
     <div id="search-container">
-        <input type="search" id="search-input" placeholder="Busca tu mascota ideal aqui.."/>
-        <button id="search">Buscar</button>
+        <input type="search" id="search-input" placeholder="Busca tu mascota ideal aqui.." name="busqueda"/>
+        <button id="search" onclick="document.getElementById('formBuscar').submit()">Buscar</button>
       </div>
+    </form>
     <form id="filterForm" method="post" action="{% url 'busqueda personalizada' %}">
     {% csrf_token %}
 
